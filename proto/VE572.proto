@@ -1,0 +1,84 @@
+syntax = "proto2";
+
+package VE572;
+
+option java_package = "com.proto2.message";
+option java_outer_classname = "MyBase";
+
+// 公共的一些数据结构
+message IpPortPair {
+    required uint32 ip = 1;
+    required uint32 port = 2;
+};
+
+// base所有协议的总名字空间
+message BaseMessage {
+    // 协议头
+    required Head head = 1;
+
+    // 协议体
+    required Body body = 2;
+};
+
+message Head {
+    // 版本号
+    required uint32 version = 1;
+    // 协议类型
+    required int32 message_type = 2;
+    // 子进程序号
+    optional int32 worker_index = 3;
+
+    optional IpPortPair client = 4;
+    optional IpPortPair target = 5;
+};
+
+// 消息体所有的内容都是可选的，需要配合消息头中的message_type进行检查，
+// 必须有一个消息体
+message Body {
+    optional SimpleResponse simple_response = 1;
+    optional HeartBeatRequest heart_beat_request = 3;
+    optional HeartBeatResponse heart_beat_response = 5;
+    extensions 100 to max;
+};
+
+enum MessageType {
+    SIMPLE_RESPONSE = 1;
+    HEART_BEAT_REQUEST = 2;
+    HEART_BEAT_RESPONSE = 3;
+};
+
+// 通用的返回码
+message ResponseCode {
+    required int32 retcode = 1;                 // 返回值
+    optional string error_message = 2;          // 当返回值不为0时，包含错误信息
+};
+
+// IP地址信息
+message IpAddress {
+    required string ip = 1;                     // IP地址
+    required uint32 type = 2;                   // IP类型，可能是内网、BGP、电信、联通、移动、东方有线、电信通等等
+};
+
+message SimpleResponse {
+    required ResponseCode rc = 1;
+};
+
+// 心跳请求，有效载荷由通信的双方协定
+message HeartBeatRequest {
+    repeated bytes payload = 1;
+};
+
+// 心跳应答，有效载荷由通信的双方协定
+message HeartBeatResponse {
+    required ResponseCode rc = 1;
+    repeated bytes payload = 2;
+};
+
+// 内部协议头，用来标识连接信息
+message InternalHead {
+    required int32 fd = 10;
+    required uint32 peer_addr = 20;
+    required int32 peer_port = 30;
+    required uint32 sock_addr = 40;
+    required int32 sock_port = 50;
+};
