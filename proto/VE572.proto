@@ -21,8 +21,6 @@ message BaseMessage {
 };
 
 message Head {
-    // 版本号
-    required uint32 version = 1;
     // 协议类型
     required int32 message_type = 2;
     // 子进程序号

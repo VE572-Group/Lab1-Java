@@ -1655,23 +1655,6 @@ public final class MyBase {
 
     /**
      * <pre>
-     * 版本号
-     * </pre>
-     *
-     * <code>required uint32 version = 1;</code>
-     */
-    boolean hasVersion();
-    /**
-     * <pre>
-     * 版本号
-     * </pre>
-     *
-     * <code>required uint32 version = 1;</code>
-     */
-    int getVersion();
-
-    /**
-     * <pre>
      * 协议类型
      * </pre>
      *
@@ -1743,7 +1726,6 @@ public final class MyBase {
       super(builder);
     }
     private Head() {
-      version_ = 0;
       messageType_ = 0;
       workerIndex_ = 0;
     }
@@ -1779,24 +1761,19 @@ public final class MyBase {
               }
               break;
             }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              version_ = input.readUInt32();
-              break;
-            }
             case 16: {
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000001;
               messageType_ = input.readInt32();
               break;
             }
             case 24: {
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000002;
               workerIndex_ = input.readInt32();
               break;
             }
             case 34: {
               com.proto2.message.MyBase.IpPortPair.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+              if (((bitField0_ & 0x00000004) == 0x00000004)) {
                 subBuilder = client_.toBuilder();
               }
               client_ = input.readMessage(com.proto2.message.MyBase.IpPortPair.PARSER, extensionRegistry);
@@ -1804,12 +1781,12 @@ public final class MyBase {
                 subBuilder.mergeFrom(client_);
                 client_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000008;
+              bitField0_ |= 0x00000004;
               break;
             }
             case 42: {
               com.proto2.message.MyBase.IpPortPair.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
+              if (((bitField0_ & 0x00000008) == 0x00000008)) {
                 subBuilder = target_.toBuilder();
               }
               target_ = input.readMessage(com.proto2.message.MyBase.IpPortPair.PARSER, extensionRegistry);
@@ -1817,7 +1794,7 @@ public final class MyBase {
                 subBuilder.mergeFrom(target_);
                 target_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000010;
+              bitField0_ |= 0x00000008;
               break;
             }
           }
@@ -1845,29 +1822,6 @@ public final class MyBase {
     }
 
     private int bitField0_;
-    public static final int VERSION_FIELD_NUMBER = 1;
-    private int version_;
-    /**
-     * <pre>
-     * 版本号
-     * </pre>
-     *
-     * <code>required uint32 version = 1;</code>
-     */
-    public boolean hasVersion() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <pre>
-     * 版本号
-     * </pre>
-     *
-     * <code>required uint32 version = 1;</code>
-     */
-    public int getVersion() {
-      return version_;
-    }
-
     public static final int MESSAGE_TYPE_FIELD_NUMBER = 2;
     private int messageType_;
     /**
@@ -1878,7 +1832,7 @@ public final class MyBase {
      * <code>required int32 message_type = 2;</code>
      */
     public boolean hasMessageType() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
      * <pre>
@@ -1901,7 +1855,7 @@ public final class MyBase {
      * <code>optional int32 worker_index = 3;</code>
      */
     public boolean hasWorkerIndex() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
      * <pre>
@@ -1920,7 +1874,7 @@ public final class MyBase {
      * <code>optional .VE572.IpPortPair client = 4;</code>
      */
     public boolean hasClient() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
      * <code>optional .VE572.IpPortPair client = 4;</code>
@@ -1941,7 +1895,7 @@ public final class MyBase {
      * <code>optional .VE572.IpPortPair target = 5;</code>
      */
     public boolean hasTarget() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
      * <code>optional .VE572.IpPortPair target = 5;</code>
@@ -1962,10 +1916,6 @@ public final class MyBase {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasVersion()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       if (!hasMessageType()) {
         memoizedIsInitialized = 0;
         return false;
@@ -1989,18 +1939,15 @@ public final class MyBase {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeUInt32(1, version_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeInt32(2, messageType_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeInt32(3, workerIndex_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeMessage(4, getClient());
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeMessage(5, getTarget());
       }
       unknownFields.writeTo(output);
@@ -2013,21 +1960,17 @@ public final class MyBase {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, version_);
+          .computeInt32Size(2, messageType_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, messageType_);
+          .computeInt32Size(3, workerIndex_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, workerIndex_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getClient());
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getTarget());
       }
@@ -2047,11 +1990,6 @@ public final class MyBase {
       com.proto2.message.MyBase.Head other = (com.proto2.message.MyBase.Head) obj;
 
       boolean result = true;
-      result = result && (hasVersion() == other.hasVersion());
-      if (hasVersion()) {
-        result = result && (getVersion()
-            == other.getVersion());
-      }
       result = result && (hasMessageType() == other.hasMessageType());
       if (hasMessageType()) {
         result = result && (getMessageType()
@@ -2083,10 +2021,6 @@ public final class MyBase {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasVersion()) {
-        hash = (37 * hash) + VERSION_FIELD_NUMBER;
-        hash = (53 * hash) + getVersion();
-      }
       if (hasMessageType()) {
         hash = (37 * hash) + MESSAGE_TYPE_FIELD_NUMBER;
         hash = (53 * hash) + getMessageType();
@@ -2234,24 +2168,22 @@ public final class MyBase {
       }
       public Builder clear() {
         super.clear();
-        version_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
         messageType_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         workerIndex_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         if (clientBuilder_ == null) {
           client_ = null;
         } else {
           clientBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         if (targetBuilder_ == null) {
           target_ = null;
         } else {
           targetBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -2279,25 +2211,21 @@ public final class MyBase {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.version_ = version_;
+        result.messageType_ = messageType_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.messageType_ = messageType_;
+        result.workerIndex_ = workerIndex_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
-        }
-        result.workerIndex_ = workerIndex_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
         }
         if (clientBuilder_ == null) {
           result.client_ = client_;
         } else {
           result.client_ = clientBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
         }
         if (targetBuilder_ == null) {
           result.target_ = target_;
@@ -2346,9 +2274,6 @@ public final class MyBase {
 
       public Builder mergeFrom(com.proto2.message.MyBase.Head other) {
         if (other == com.proto2.message.MyBase.Head.getDefaultInstance()) return this;
-        if (other.hasVersion()) {
-          setVersion(other.getVersion());
-        }
         if (other.hasMessageType()) {
           setMessageType(other.getMessageType());
         }
@@ -2367,9 +2292,6 @@ public final class MyBase {
       }
 
       public final boolean isInitialized() {
-        if (!hasVersion()) {
-          return false;
-        }
         if (!hasMessageType()) {
           return false;
         }
@@ -2405,54 +2327,6 @@ public final class MyBase {
       }
       private int bitField0_;
 
-      private int version_ ;
-      /**
-       * <pre>
-       * 版本号
-       * </pre>
-       *
-       * <code>required uint32 version = 1;</code>
-       */
-      public boolean hasVersion() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <pre>
-       * 版本号
-       * </pre>
-       *
-       * <code>required uint32 version = 1;</code>
-       */
-      public int getVersion() {
-        return version_;
-      }
-      /**
-       * <pre>
-       * 版本号
-       * </pre>
-       *
-       * <code>required uint32 version = 1;</code>
-       */
-      public Builder setVersion(int value) {
-        bitField0_ |= 0x00000001;
-        version_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 版本号
-       * </pre>
-       *
-       * <code>required uint32 version = 1;</code>
-       */
-      public Builder clearVersion() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        version_ = 0;
-        onChanged();
-        return this;
-      }
-
       private int messageType_ ;
       /**
        * <pre>
@@ -2462,7 +2336,7 @@ public final class MyBase {
        * <code>required int32 message_type = 2;</code>
        */
       public boolean hasMessageType() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
        * <pre>
@@ -2482,7 +2356,7 @@ public final class MyBase {
        * <code>required int32 message_type = 2;</code>
        */
       public Builder setMessageType(int value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000001;
         messageType_ = value;
         onChanged();
         return this;
@@ -2495,7 +2369,7 @@ public final class MyBase {
        * <code>required int32 message_type = 2;</code>
        */
       public Builder clearMessageType() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         messageType_ = 0;
         onChanged();
         return this;
@@ -2510,7 +2384,7 @@ public final class MyBase {
        * <code>optional int32 worker_index = 3;</code>
        */
       public boolean hasWorkerIndex() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
        * <pre>
@@ -2530,7 +2404,7 @@ public final class MyBase {
        * <code>optional int32 worker_index = 3;</code>
        */
       public Builder setWorkerIndex(int value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         workerIndex_ = value;
         onChanged();
         return this;
@@ -2543,7 +2417,7 @@ public final class MyBase {
        * <code>optional int32 worker_index = 3;</code>
        */
       public Builder clearWorkerIndex() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         workerIndex_ = 0;
         onChanged();
         return this;
@@ -2556,7 +2430,7 @@ public final class MyBase {
        * <code>optional .VE572.IpPortPair client = 4;</code>
        */
       public boolean hasClient() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
        * <code>optional .VE572.IpPortPair client = 4;</code>
@@ -2581,7 +2455,7 @@ public final class MyBase {
         } else {
           clientBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
@@ -2595,7 +2469,7 @@ public final class MyBase {
         } else {
           clientBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
@@ -2603,7 +2477,7 @@ public final class MyBase {
        */
       public Builder mergeClient(com.proto2.message.MyBase.IpPortPair value) {
         if (clientBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
               client_ != null &&
               client_ != com.proto2.message.MyBase.IpPortPair.getDefaultInstance()) {
             client_ =
@@ -2615,7 +2489,7 @@ public final class MyBase {
         } else {
           clientBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
@@ -2628,14 +2502,14 @@ public final class MyBase {
         } else {
           clientBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       /**
        * <code>optional .VE572.IpPortPair client = 4;</code>
        */
       public com.proto2.message.MyBase.IpPortPair.Builder getClientBuilder() {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getClientFieldBuilder().getBuilder();
       }
@@ -2674,7 +2548,7 @@ public final class MyBase {
        * <code>optional .VE572.IpPortPair target = 5;</code>
        */
       public boolean hasTarget() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
        * <code>optional .VE572.IpPortPair target = 5;</code>
@@ -2699,7 +2573,7 @@ public final class MyBase {
         } else {
           targetBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
@@ -2713,7 +2587,7 @@ public final class MyBase {
         } else {
           targetBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
@@ -2721,7 +2595,7 @@ public final class MyBase {
        */
       public Builder mergeTarget(com.proto2.message.MyBase.IpPortPair value) {
         if (targetBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
               target_ != null &&
               target_ != com.proto2.message.MyBase.IpPortPair.getDefaultInstance()) {
             target_ =
@@ -2733,7 +2607,7 @@ public final class MyBase {
         } else {
           targetBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
@@ -2746,14 +2620,14 @@ public final class MyBase {
         } else {
           targetBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       /**
        * <code>optional .VE572.IpPortPair target = 5;</code>
        */
       public com.proto2.message.MyBase.IpPortPair.Builder getTargetBuilder() {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         onChanged();
         return getTargetFieldBuilder().getBuilder();
       }
@@ -8243,26 +8117,26 @@ public final class MyBase {
       "\n\013VE572.proto\022\005VE572\"&\n\nIpPortPair\022\n\n\002ip" +
       "\030\001 \002(\r\022\014\n\004port\030\002 \002(\r\"C\n\013BaseMessage\022\031\n\004h" +
       "ead\030\001 \002(\0132\013.VE572.Head\022\031\n\004body\030\002 \002(\0132\013.V" +
-      "E572.Body\"\211\001\n\004Head\022\017\n\007version\030\001 \002(\r\022\024\n\014m" +
-      "essage_type\030\002 \002(\005\022\024\n\014worker_index\030\003 \001(\005\022" +
-      "!\n\006client\030\004 \001(\0132\021.VE572.IpPortPair\022!\n\006ta" +
-      "rget\030\005 \001(\0132\021.VE572.IpPortPair\"\254\001\n\004Body\022." +
-      "\n\017simple_response\030\001 \001(\0132\025.VE572.SimpleRe" +
-      "sponse\0223\n\022heart_beat_request\030\003 \001(\0132\027.VE5" +
-      "72.HeartBeatRequest\0225\n\023heart_beat_respon" +
-      "se\030\005 \001(\0132\030.VE572.HeartBeatResponse*\010\010d\020\200" +
-      "\200\200\200\002\"6\n\014ResponseCode\022\017\n\007retcode\030\001 \002(\005\022\025\n" +
-      "\rerror_message\030\002 \001(\t\"%\n\tIpAddress\022\n\n\002ip\030" +
-      "\001 \002(\t\022\014\n\004type\030\002 \002(\r\"1\n\016SimpleResponse\022\037\n" +
-      "\002rc\030\001 \002(\0132\023.VE572.ResponseCode\"#\n\020HeartB" +
-      "eatRequest\022\017\n\007payload\030\001 \003(\014\"E\n\021HeartBeat" +
-      "Response\022\037\n\002rc\030\001 \002(\0132\023.VE572.ResponseCod" +
-      "e\022\017\n\007payload\030\002 \003(\014\"f\n\014InternalHead\022\n\n\002fd" +
-      "\030\n \002(\005\022\021\n\tpeer_addr\030\024 \002(\r\022\021\n\tpeer_port\030\036" +
-      " \002(\005\022\021\n\tsock_addr\030( \002(\r\022\021\n\tsock_port\0302 \002" +
-      "(\005*S\n\013MessageType\022\023\n\017SIMPLE_RESPONSE\020\001\022\026" +
-      "\n\022HEART_BEAT_REQUEST\020\002\022\027\n\023HEART_BEAT_RES" +
-      "PONSE\020\003B\034\n\022com.proto2.messageB\006MyBase"
+      "E572.Body\"x\n\004Head\022\024\n\014message_type\030\002 \002(\005\022" +
+      "\024\n\014worker_index\030\003 \001(\005\022!\n\006client\030\004 \001(\0132\021." +
+      "VE572.IpPortPair\022!\n\006target\030\005 \001(\0132\021.VE572" +
+      ".IpPortPair\"\254\001\n\004Body\022.\n\017simple_response\030" +
+      "\001 \001(\0132\025.VE572.SimpleResponse\0223\n\022heart_be" +
+      "at_request\030\003 \001(\0132\027.VE572.HeartBeatReques" +
+      "t\0225\n\023heart_beat_response\030\005 \001(\0132\030.VE572.H" +
+      "eartBeatResponse*\010\010d\020\200\200\200\200\002\"6\n\014ResponseCo" +
+      "de\022\017\n\007retcode\030\001 \002(\005\022\025\n\rerror_message\030\002 \001" +
+      "(\t\"%\n\tIpAddress\022\n\n\002ip\030\001 \002(\t\022\014\n\004type\030\002 \002(" +
+      "\r\"1\n\016SimpleResponse\022\037\n\002rc\030\001 \002(\0132\023.VE572." +
+      "ResponseCode\"#\n\020HeartBeatRequest\022\017\n\007payl" +
+      "oad\030\001 \003(\014\"E\n\021HeartBeatResponse\022\037\n\002rc\030\001 \002" +
+      "(\0132\023.VE572.ResponseCode\022\017\n\007payload\030\002 \003(\014" +
+      "\"f\n\014InternalHead\022\n\n\002fd\030\n \002(\005\022\021\n\tpeer_add" +
+      "r\030\024 \002(\r\022\021\n\tpeer_port\030\036 \002(\005\022\021\n\tsock_addr\030" +
+      "( \002(\r\022\021\n\tsock_port\0302 \002(\005*S\n\013MessageType\022" +
+      "\023\n\017SIMPLE_RESPONSE\020\001\022\026\n\022HEART_BEAT_REQUE" +
+      "ST\020\002\022\027\n\023HEART_BEAT_RESPONSE\020\003B\034\n\022com.pro" +
+      "to2.messageB\006MyBase"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8293,7 +8167,7 @@ public final class MyBase {
     internal_static_VE572_Head_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_VE572_Head_descriptor,
-        new java.lang.String[] { "Version", "MessageType", "WorkerIndex", "Client", "Target", });
+        new java.lang.String[] { "MessageType", "WorkerIndex", "Client", "Target", });
     internal_static_VE572_Body_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_VE572_Body_fieldAccessorTable = new

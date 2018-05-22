@@ -40,25 +40,25 @@ extend VE572.Body {
 };
 
 message ClientBeginRequest {
-    required uint32 seqid       = 1;
+    optional uint32 seqid       = 1;
 }
 
 message ClientBeginResponse {
     required ResponseCode rc    = 1;
-    required uint32 seqid       = 2;
+    optional uint32 seqid       = 2;
 }
 
 message ClientEndRequest {
-    required uint32 seqid       = 1;
+    optional uint32 seqid       = 1;
 }
 
 message ClientEndResponse {
     required ResponseCode rc    = 1;
-    required uint32 seqid       = 2;
+    optional uint32 seqid       = 2;
 }
 
 message SendDataRequest {
-    required uint32 seqid       = 1;
+    optional uint32 seqid       = 1;
     required uint32 size        = 2;
     required uint32 type        = 3;
     optional bytes data         = 4;
@@ -66,7 +66,7 @@ message SendDataRequest {
 
 message SendDataResponse {
     required ResponseCode rc    = 1;
-    required uint32 seqid       = 2;
+    optional uint32 seqid       = 2;
 }
 
 enum OpType {
@@ -78,7 +78,7 @@ enum OpType {
 }
 
 message QueryDataRequest {
-    required uint32 seqid       = 1;
+    optional uint32 seqid       = 1;
     required OpType type        = 2;
     required string name        = 3;
 }
@@ -93,7 +93,7 @@ message QueryResult {
 
 message QueryDataResponse {
     required ResponseCode rc    = 1;
-    required uint32 seqid       = 2;
+    optional uint32 seqid       = 2;
     required QueryResult result = 3;
 }
 

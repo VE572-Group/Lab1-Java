@@ -417,11 +417,11 @@ public final class L1Message {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     boolean hasSeqid();
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     int getSeqid();
   }
@@ -505,13 +505,13 @@ public final class L1Message {
     public static final int SEQID_FIELD_NUMBER = 1;
     private int seqid_;
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     public boolean hasSeqid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     public int getSeqid() {
       return seqid_;
@@ -523,10 +523,6 @@ public final class L1Message {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasSeqid()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -794,9 +790,6 @@ public final class L1Message {
       }
 
       public final boolean isInitialized() {
-        if (!hasSeqid()) {
-          return false;
-        }
         return true;
       }
 
@@ -821,19 +814,19 @@ public final class L1Message {
 
       private int seqid_ ;
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public boolean hasSeqid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public int getSeqid() {
         return seqid_;
       }
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public Builder setSeqid(int value) {
         bitField0_ |= 0x00000001;
@@ -842,7 +835,7 @@ public final class L1Message {
         return this;
       }
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public Builder clearSeqid() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -917,11 +910,11 @@ public final class L1Message {
     com.proto2.message.MyBase.ResponseCodeOrBuilder getRcOrBuilder();
 
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     boolean hasSeqid();
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     int getSeqid();
   }
@@ -1039,13 +1032,13 @@ public final class L1Message {
     public static final int SEQID_FIELD_NUMBER = 2;
     private int seqid_;
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     public boolean hasSeqid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     public int getSeqid() {
       return seqid_;
@@ -1058,10 +1051,6 @@ public final class L1Message {
       if (isInitialized == 0) return false;
 
       if (!hasRc()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSeqid()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -1373,9 +1362,6 @@ public final class L1Message {
         if (!hasRc()) {
           return false;
         }
-        if (!hasSeqid()) {
-          return false;
-        }
         if (!getRc().isInitialized()) {
           return false;
         }
@@ -1521,19 +1507,19 @@ public final class L1Message {
 
       private int seqid_ ;
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public boolean hasSeqid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public int getSeqid() {
         return seqid_;
       }
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public Builder setSeqid(int value) {
         bitField0_ |= 0x00000002;
@@ -1542,7 +1528,7 @@ public final class L1Message {
         return this;
       }
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public Builder clearSeqid() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -1604,11 +1590,11 @@ public final class L1Message {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     boolean hasSeqid();
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     int getSeqid();
   }
@@ -1692,13 +1678,13 @@ public final class L1Message {
     public static final int SEQID_FIELD_NUMBER = 1;
     private int seqid_;
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     public boolean hasSeqid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     public int getSeqid() {
       return seqid_;
@@ -1710,10 +1696,6 @@ public final class L1Message {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasSeqid()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -1981,9 +1963,6 @@ public final class L1Message {
       }
 
       public final boolean isInitialized() {
-        if (!hasSeqid()) {
-          return false;
-        }
         return true;
       }
 
@@ -2008,19 +1987,19 @@ public final class L1Message {
 
       private int seqid_ ;
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public boolean hasSeqid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public int getSeqid() {
         return seqid_;
       }
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public Builder setSeqid(int value) {
         bitField0_ |= 0x00000001;
@@ -2029,7 +2008,7 @@ public final class L1Message {
         return this;
       }
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public Builder clearSeqid() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -2104,11 +2083,11 @@ public final class L1Message {
     com.proto2.message.MyBase.ResponseCodeOrBuilder getRcOrBuilder();
 
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     boolean hasSeqid();
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     int getSeqid();
   }
@@ -2226,13 +2205,13 @@ public final class L1Message {
     public static final int SEQID_FIELD_NUMBER = 2;
     private int seqid_;
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     public boolean hasSeqid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     public int getSeqid() {
       return seqid_;
@@ -2245,10 +2224,6 @@ public final class L1Message {
       if (isInitialized == 0) return false;
 
       if (!hasRc()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSeqid()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -2560,9 +2535,6 @@ public final class L1Message {
         if (!hasRc()) {
           return false;
         }
-        if (!hasSeqid()) {
-          return false;
-        }
         if (!getRc().isInitialized()) {
           return false;
         }
@@ -2708,19 +2680,19 @@ public final class L1Message {
 
       private int seqid_ ;
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public boolean hasSeqid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public int getSeqid() {
         return seqid_;
       }
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public Builder setSeqid(int value) {
         bitField0_ |= 0x00000002;
@@ -2729,7 +2701,7 @@ public final class L1Message {
         return this;
       }
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public Builder clearSeqid() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -2791,11 +2763,11 @@ public final class L1Message {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     boolean hasSeqid();
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     int getSeqid();
 
@@ -2924,13 +2896,13 @@ public final class L1Message {
     public static final int SEQID_FIELD_NUMBER = 1;
     private int seqid_;
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     public boolean hasSeqid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     public int getSeqid() {
       return seqid_;
@@ -2987,10 +2959,6 @@ public final class L1Message {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasSeqid()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       if (!hasSize()) {
         memoizedIsInitialized = 0;
         return false;
@@ -3341,9 +3309,6 @@ public final class L1Message {
       }
 
       public final boolean isInitialized() {
-        if (!hasSeqid()) {
-          return false;
-        }
         if (!hasSize()) {
           return false;
         }
@@ -3374,19 +3339,19 @@ public final class L1Message {
 
       private int seqid_ ;
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public boolean hasSeqid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public int getSeqid() {
         return seqid_;
       }
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public Builder setSeqid(int value) {
         bitField0_ |= 0x00000001;
@@ -3395,7 +3360,7 @@ public final class L1Message {
         return this;
       }
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public Builder clearSeqid() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -3569,11 +3534,11 @@ public final class L1Message {
     com.proto2.message.MyBase.ResponseCodeOrBuilder getRcOrBuilder();
 
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     boolean hasSeqid();
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     int getSeqid();
   }
@@ -3691,13 +3656,13 @@ public final class L1Message {
     public static final int SEQID_FIELD_NUMBER = 2;
     private int seqid_;
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     public boolean hasSeqid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     public int getSeqid() {
       return seqid_;
@@ -3710,10 +3675,6 @@ public final class L1Message {
       if (isInitialized == 0) return false;
 
       if (!hasRc()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSeqid()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -4025,9 +3986,6 @@ public final class L1Message {
         if (!hasRc()) {
           return false;
         }
-        if (!hasSeqid()) {
-          return false;
-        }
         if (!getRc().isInitialized()) {
           return false;
         }
@@ -4173,19 +4131,19 @@ public final class L1Message {
 
       private int seqid_ ;
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public boolean hasSeqid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public int getSeqid() {
         return seqid_;
       }
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public Builder setSeqid(int value) {
         bitField0_ |= 0x00000002;
@@ -4194,7 +4152,7 @@ public final class L1Message {
         return this;
       }
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public Builder clearSeqid() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -4256,11 +4214,11 @@ public final class L1Message {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     boolean hasSeqid();
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     int getSeqid();
 
@@ -4386,13 +4344,13 @@ public final class L1Message {
     public static final int SEQID_FIELD_NUMBER = 1;
     private int seqid_;
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     public boolean hasSeqid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required uint32 seqid = 1;</code>
+     * <code>optional uint32 seqid = 1;</code>
      */
     public int getSeqid() {
       return seqid_;
@@ -4462,10 +4420,6 @@ public final class L1Message {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasSeqid()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       if (!hasType()) {
         memoizedIsInitialized = 0;
         return false;
@@ -4791,9 +4745,6 @@ public final class L1Message {
       }
 
       public final boolean isInitialized() {
-        if (!hasSeqid()) {
-          return false;
-        }
         if (!hasType()) {
           return false;
         }
@@ -4824,19 +4775,19 @@ public final class L1Message {
 
       private int seqid_ ;
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public boolean hasSeqid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public int getSeqid() {
         return seqid_;
       }
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public Builder setSeqid(int value) {
         bitField0_ |= 0x00000001;
@@ -4845,7 +4796,7 @@ public final class L1Message {
         return this;
       }
       /**
-       * <code>required uint32 seqid = 1;</code>
+       * <code>optional uint32 seqid = 1;</code>
        */
       public Builder clearSeqid() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -6340,11 +6291,11 @@ public final class L1Message {
     com.proto2.message.MyBase.ResponseCodeOrBuilder getRcOrBuilder();
 
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     boolean hasSeqid();
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     int getSeqid();
 
@@ -6488,13 +6439,13 @@ public final class L1Message {
     public static final int SEQID_FIELD_NUMBER = 2;
     private int seqid_;
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     public boolean hasSeqid() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required uint32 seqid = 2;</code>
+     * <code>optional uint32 seqid = 2;</code>
      */
     public int getSeqid() {
       return seqid_;
@@ -6528,10 +6479,6 @@ public final class L1Message {
       if (isInitialized == 0) return false;
 
       if (!hasRc()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSeqid()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -6885,9 +6832,6 @@ public final class L1Message {
         if (!hasRc()) {
           return false;
         }
-        if (!hasSeqid()) {
-          return false;
-        }
         if (!hasResult()) {
           return false;
         }
@@ -7039,19 +6983,19 @@ public final class L1Message {
 
       private int seqid_ ;
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public boolean hasSeqid() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public int getSeqid() {
         return seqid_;
       }
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public Builder setSeqid(int value) {
         bitField0_ |= 0x00000002;
@@ -7060,7 +7004,7 @@ public final class L1Message {
         return this;
       }
       /**
-       * <code>required uint32 seqid = 2;</code>
+       * <code>optional uint32 seqid = 2;</code>
        */
       public Builder clearSeqid() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -7384,21 +7328,21 @@ public final class L1Message {
   static {
     java.lang.String[] descriptorData = {
       "\n\010l1.proto\022\010VE572.l1\032\013VE572.proto\"#\n\022Cli" +
-      "entBeginRequest\022\r\n\005seqid\030\001 \002(\r\"E\n\023Client" +
+      "entBeginRequest\022\r\n\005seqid\030\001 \001(\r\"E\n\023Client" +
       "BeginResponse\022\037\n\002rc\030\001 \002(\0132\023.VE572.Respon" +
-      "seCode\022\r\n\005seqid\030\002 \002(\r\"!\n\020ClientEndReques" +
-      "t\022\r\n\005seqid\030\001 \002(\r\"C\n\021ClientEndResponse\022\037\n" +
+      "seCode\022\r\n\005seqid\030\002 \001(\r\"!\n\020ClientEndReques" +
+      "t\022\r\n\005seqid\030\001 \001(\r\"C\n\021ClientEndResponse\022\037\n" +
       "\002rc\030\001 \002(\0132\023.VE572.ResponseCode\022\r\n\005seqid\030" +
-      "\002 \002(\r\"J\n\017SendDataRequest\022\r\n\005seqid\030\001 \002(\r\022" +
+      "\002 \001(\r\"J\n\017SendDataRequest\022\r\n\005seqid\030\001 \001(\r\022" +
       "\014\n\004size\030\002 \002(\r\022\014\n\004type\030\003 \002(\r\022\014\n\004data\030\004 \001(" +
       "\014\"B\n\020SendDataResponse\022\037\n\002rc\030\001 \002(\0132\023.VE57" +
-      "2.ResponseCode\022\r\n\005seqid\030\002 \002(\r\"O\n\020QueryDa" +
-      "taRequest\022\r\n\005seqid\030\001 \002(\r\022\036\n\004type\030\002 \002(\0162\020" +
+      "2.ResponseCode\022\r\n\005seqid\030\002 \001(\r\"O\n\020QueryDa" +
+      "taRequest\022\r\n\005seqid\030\001 \001(\r\022\036\n\004type\030\002 \002(\0162\020" +
       ".VE572.l1.OpType\022\014\n\004name\030\003 \002(\t\"Y\n\013QueryR" +
       "esult\022\014\n\004name\030\001 \002(\t\022\020\n\010quantity\030\002 \002(\t\022\r\n" +
       "\005value\030\003 \002(\014\022\014\n\004unit\030\004 \002(\t\022\r\n\005count\030\005 \002(" +
       "\r\"j\n\021QueryDataResponse\022\037\n\002rc\030\001 \002(\0132\023.VE5" +
-      "72.ResponseCode\022\r\n\005seqid\030\002 \002(\r\022%\n\006result" +
+      "72.ResponseCode\022\r\n\005seqid\030\002 \001(\r\022%\n\006result" +
       "\030\003 \002(\0132\025.VE572.l1.QueryResult*\376\001\n\013Messag" +
       "eType\022\021\n\014BEGINNING_ID\020\307\001\022\031\n\024CLIENT_BEGIN" +
       "_REQUEST\020\310\001\022\032\n\025CLIENT_BEGIN_RESPONSE\020\311\001\022" +
