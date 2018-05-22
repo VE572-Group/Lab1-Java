@@ -7,7 +7,7 @@ import com.google.protobuf.*;
 import com.proto2.message.L1Message.*;
 import com.proto2.message.Mybase.*;
 
-import Socket.MachineFactory;
+import MySocket.*;
 
 public class DataServer {
 
@@ -41,8 +41,7 @@ public class DataServer {
          * private void log(String message) { System.out.println(message); }
          */
 
-        @Override
-        private void Handler(BaseMessage msg) {
+        private void HandlerOut() {
             Head headIn = msg.getHead();
             int iMessageType = headIn.getMessageType();
 
@@ -55,7 +54,8 @@ public class DataServer {
 
                 Head.setMessageType(SEND_DATA_RESPONSE);
                 Body.setExtension(send_data_response, rsp);
-            } else if (iMessageType == QUERY_DATA_REQUEST) {
+            }
+            if (iMessageType == QUERY_DATA_REQUEST) {
                 ResponseCode rc = ResponseCode.newBuilder().setRc(0).build();
                 QueryResult.Builder rst = QueryResult.newBuilder();
                 rst.setName(msg.getBody().getExtension(query_data_request).getName());
@@ -78,11 +78,14 @@ public class DataServer {
          * MsgOut.writeTo(out); out.close(); }
          */
 
-        @Override
         public void run() {
             try {
-                ReadFromPeer();
-                WriteToPeer();
+                while (true) {
+                    ReadFromPeer();
+                    // HandlerIn();
+                    // HandlerOut();
+                    WriteToPeer();
+                }
             } catch (Exception e) {
                 log(e);
             } finally {
