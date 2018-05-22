@@ -26,7 +26,6 @@ public class DataServer {
 
     private static class Server extends MachineFactory {
         private Socket mSocket = null;
-        private int mclientNumber;
         private BaseMessage MsgOut = null;
 
         public Server(Socket socket, int clientNumber) {
@@ -82,9 +81,9 @@ public class DataServer {
             try {
                 while (true) {
                     ReadFromPeer();
-                    // HandlerIn();
-                    // HandlerOut();
                     WriteToPeer();
+                    if (MsgOut.getHead().getMessageType() == CLIENT_END_RESPONSE)
+                        break;
                 }
             } catch (Exception e) {
                 log(e);

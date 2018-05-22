@@ -38,9 +38,21 @@ public class DataClient {
         private RequestInfo mReqInfo = null;
         private ResponseInfo mRspInfo = null;
 
-        public Client(String ip, int port) {
+        public Client(Socket socket, int clientNumber) {
             mSocket = new Socket(ip, port);
-            while (!mSocket.isConnected()) {
+            mclientNumber = clientNumber;
+        }
+
+        public void Disconnect(Socket socket) {
+            socket.close();
+        }
+
+        public void run() {
+            try {
+                WriteToPeer();
+                ReadFromPeer();
+            } catch (Exception e) {
+                log(e);
             }
         }
 
