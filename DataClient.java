@@ -13,34 +13,13 @@ import MySocket.*;
 
 public class DataClient {
 
-    public static class RequestInfo {
-        public int message_type = null;
-        public int data_size = null;
-        public int data_type = null;
-        public ByteString data = null;
-        public String op_name = null;
-        public OpType op_type = null;
-    }
+    public static class Client extends MachineFactory {
 
-    public static class ResponseInfo {
-        public int message_type = null;
-        public int rc = null;
-        public String name = null;
-        public String quantity = null;
-        public ByteString value = null;
-        public String unit = null;
-        public int count = null;
-    }
+        // private RequestInfo mReqInfo = null;
+        // private ResponseInfo mRspInfo = null;
 
-    public static class Client {
-
-        private RequestInfo mReqInfo = null;
-        private ResponseInfo mRspInfo = null;
-
-        public Client(String ip, int port, int clientNumber) { // establish a client connection
-            mSocket = new Socket(ip, port);
-            mclientNumber = clientNumber;
-            log("Connect to ip: " + ip + " port: " + port, mclientNumber);
+        public Client(Socket socket, int clientNumber) { // establish a client connection
+            super(socket, clientNumber);
         }
 
         public void Disconnect(Socket socket) { // called before client terminal close
@@ -61,29 +40,27 @@ public class DataClient {
             return mRspInfo;
         }
 
-        /*
-         * public void run() { try { WriteToPeer(); ReadFromPeer(); } catch (Exception
-         * e) { log(e); } }
-         */
-        public void ReadFromPeer() { // client receive response from server
-            InputStream in = mSocket.getInputStream();
-            while (in.available() == 0) {
+        public void run() {
+            try {
+                WriteToPeer();
+                ReadFromPeer();
+            } catch (Exception e) {
+                log(e, mclientNumber);
             }
-            MsgIn = BaseMessage.parseFrom(in);
-            HandlerIn();
         }
 
-        public void WriteToPeer() { // client send request to server
-            HandlerOut();
-            OutputStream out = mSocket.getOutputStream();
-            MsgOut.writeTo(out);
-            // out.close();
-        }
-
+        /*
+         * public void ReadFromPeer() { // client receive response from server
+         * InputStream in = mSocket.getInputStream(); while (in.available() == 0) { }
+         * MsgIn = BaseMessage.parseFrom(in); HandlerIn(); }
+         * 
+         * public void WriteToPeer() { // client send request to server HandlerOut();
+         * OutputStream out = mSocket.getOutputStream(); MsgOut.writeTo(out); //
+         * out.close(); }
+         */
         private void HandlerIn() {
             int iMessageType = MsgIn.getHead().getMessageType();
             Body body = MsgIn.getBody();
-
             mRspInfo.message_type = iMessageType;
 
             switch (iMessageType) {

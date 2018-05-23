@@ -14,6 +14,25 @@ public class MySocket {
     private PrintWriter print_writer = null;
     private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
+    public static class RequestInfo {
+        public int message_type = null;
+        public int data_size = null;
+        public int data_type = null;
+        public ByteString data = null;
+        public String op_name = null;
+        public OpType op_type = null;
+    }
+
+    public static class ResponseInfo {
+        public int message_type = null;
+        public int rc = null;
+        public String name = null;
+        public String quantity = null;
+        public ByteString value = null;
+        public String unit = null;
+        public int count = null;
+    }
+
     public void OpenLog() throws IOException {
         print_writer = new PrintWriter(new FileWriter(logfile));
     }
@@ -36,13 +55,26 @@ public class MySocket {
         static final long serialVersionUID = 7818375838146190175L;
     }
 
-    public static class MachineFactory extends Thread {
+    public static class MachineFactory {
         private Socket mSocket = null;
-        private int mclientNumber;
+        private int mclientNumber = -1;
         private BaseMessage MsgOut = null;
         private BaseMessage MsgIn = null;
+        private RequestInfo mReqInfo = null;
+        private ResponseInfo mRspInfo = null;
+        private int mAllowed = -1; // init to -1, begin is 0; end is 1;
 
-        public void ReadFromPeer() {
+        public MachineFactory(Socket socket, int clientNumber) {
+            mSocket = socket;
+            mclientNumber = clientNumber;
+            mReqInfo = new RequestInfo();
+            mRspInfo = new ResponseInfo();
+        }
+
+        public void run() {
+        }
+
+        private void ReadFromPeer() {
             InputStream in = mSocket.getInputStream();
             while (in.available() == 0) {
             }
@@ -51,7 +83,7 @@ public class MySocket {
             HandlerIn();
         }
 
-        public void WriteToPeer() {
+        private void WriteToPeer() {
             HandlerOut();
             OutputStream out = mSocket.getOutputStream();
             MsgOut.writeTo(out);

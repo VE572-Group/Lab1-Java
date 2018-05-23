@@ -17,7 +17,7 @@ public class DataServer {
         ServerSocket listener = new ServerSocket(5000);
         try {
             while (true) {
-                new Server(listener.accept(), clientNumber++).start();
+                new Server(listener.accept(), clientNumber++).run();
             }
         } finally {
             listener.close();
@@ -29,13 +29,52 @@ public class DataServer {
         private BaseMessage MsgOut = null;
 
         public Server(Socket socket, int clientNumber) {
-            mSocket = socket;
-            mclientNumber = clientNumber;
+            super(socket, clientNumber);
+        }
+
+        public void run() {
+            try {
+                while (mAllowed <= 0) {
+                    ReadFromPeer();
+                    WriteToPeer();
+                }
+            } catch (Exception e) {
+                log(e, mclientNumber);
+            } finally {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    log(e, mclientNumber);
+                }
+                log("Connection closed", mclientNumber);
+            }
+        }
+
+        private void HandlerIn() {
+            int iMessageType = MsgIn.getHead().getMessageType();
+            mReqInfo.message_type = iMessageType;
+            Body body = MsgIn.getBody();
+            if (iMessageType == SEND_DATA_REQUEST) {
+                SendDataRequest req = body.getExtension(send_data_request);
+                mReqInfo.data = req.getData();
+                mReqInfo.data_size = req.getSize();
+                mReqInfo.data_type = req.getType();
+            }
+            if (iMessageType == QUERY_DATA_REQUEST) {
+                SendDataRequest req = body.getExtension(query_data_request);
+                mReqInfo.op_name = req.getName();
+                mReqInfo.op_type = req.getType();
+            }
+            if (iMessageType == CLIENT_BEGIN_REQUEST) {
+                mAllowed = 0;
+            }
+            if (iMessageType == CLIENT_END_REQUEST) {
+                mAllowed = 1;
+            }
         }
 
         private void HandlerOut() {
-            Head headIn = msg.getHead();
-            int iMessageType = headIn.getMessageType();
+            int iMessageType = mReqInfo.message_type;
 
             Head.Builder Head = Head.newBuilder();
             Head.Builder Body = Body.newBuilder();
@@ -59,35 +98,21 @@ public class DataServer {
                 Head.setMessageType(QUERY_DATA_RESPONSE);
                 Body.setExtension(query_data_response, rsp);
             }
-            MsgOut = BaseMessage.newBuilder().setHead(Head).setBody(Body).build();
-        }
+            if (iMessageType == CLIENT_BEGIN_REQUEST) {
+                ResponseCode rc = ResponseCode.newBuilder().setRc(0).build();
+                ClientBeginResponse rsp = ClientBeginResponse.newBuilder().setRc(rc)..build();
 
-        /*
-         * private void ReadFromPeer() { InputStream in = mSocket.getInputStream();
-         * BaseMessage MsgIn = BaseMessage.parseFrom(in); in.close(); Handler(MsgIn); }
-         * 
-         * private void WriteToPeer() { OutputStream out = mSocket.getOutputStream();
-         * MsgOut.writeTo(out); out.close(); }
-         */
-
-        public void run() {
-            try {
-                while (true) {
-                    ReadFromPeer();
-                    WriteToPeer();
-                    if (MsgOut.getHead().getMessageType() == CLIENT_END_RESPONSE)
-                        break;
-                }
-            } catch (Exception e) {
-                log(e, mclientNumber);
-            } finally {
-                try {
-                    socket.close();
-                } catch (IOException e) {
-                    log(e, mclientNumber);
-                }
-                log("Connection closed", mclientNumber);
+                Head.setMessageType(CLIENT_BEGIN_RESPONSE);
+                Body.setExtension(client_begin_response, rsp);
             }
+            if (iMessageType == QUERY_DATA_REQUEST) {
+                ResponseCode rc = ResponseCode.newBuilder().setRc(0).build();
+                ClientEndResponse rsp = ClientEndResponse.newBuilder().setRc(rc)..build();
+
+                Head.setMessageType(CLIENT_END_RESPONSE);
+                Body.setExtension(client_end_response, rsp);
+            }
+            MsgOut = BaseMessage.newBuilder().setHead(Head).setBody(Body).build();
         }
 
     }
