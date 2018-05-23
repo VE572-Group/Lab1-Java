@@ -9,9 +9,6 @@ import "VE572.proto";
 
 enum MessageType {
 	BEGINNING_ID = 199;
-    // ================================================================================
-    // 用于demo的协议包[200-210)
-    // ================================================================================
 
     CLIENT_BEGIN_REQUEST    = 200;
     CLIENT_BEGIN_RESPONSE   = 201;
@@ -26,9 +23,6 @@ enum MessageType {
 };
 
 extend VE572.Body {
-    // ================================================================================
-    // 用于demo的协议包[200-210)
-    // ================================================================================
     optional ClientBeginRequest client_begin_request    = 200;                     // -------------------------------
     optional ClientBeginResponse client_begin_response  = 201; 
     optional ClientEndRequest client_end_request        = 202;

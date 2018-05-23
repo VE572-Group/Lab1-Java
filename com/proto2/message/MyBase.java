@@ -136,10 +136,6 @@ public final class MyBase {
     int getPort();
   }
   /**
-   * <pre>
-   * 公共的一些数据结构
-   * </pre>
-   *
    * Protobuf type {@code VE572.IpPortPair}
    */
   public  static final class IpPortPair extends
@@ -433,10 +429,6 @@ public final class MyBase {
       return builder;
     }
     /**
-     * <pre>
-     * 公共的一些数据结构
-     * </pre>
-     *
      * Protobuf type {@code VE572.IpPortPair}
      */
     public static final class Builder extends
@@ -707,60 +699,32 @@ public final class MyBase {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * 协议头
-     * </pre>
-     *
      * <code>required .VE572.Head head = 1;</code>
      */
     boolean hasHead();
     /**
-     * <pre>
-     * 协议头
-     * </pre>
-     *
      * <code>required .VE572.Head head = 1;</code>
      */
     com.proto2.message.MyBase.Head getHead();
     /**
-     * <pre>
-     * 协议头
-     * </pre>
-     *
      * <code>required .VE572.Head head = 1;</code>
      */
     com.proto2.message.MyBase.HeadOrBuilder getHeadOrBuilder();
 
     /**
-     * <pre>
-     * 协议体
-     * </pre>
-     *
      * <code>required .VE572.Body body = 2;</code>
      */
     boolean hasBody();
     /**
-     * <pre>
-     * 协议体
-     * </pre>
-     *
      * <code>required .VE572.Body body = 2;</code>
      */
     com.proto2.message.MyBase.Body getBody();
     /**
-     * <pre>
-     * 协议体
-     * </pre>
-     *
      * <code>required .VE572.Body body = 2;</code>
      */
     com.proto2.message.MyBase.BodyOrBuilder getBodyOrBuilder();
   }
   /**
-   * <pre>
-   * base所有协议的总名字空间
-   * </pre>
-   *
    * Protobuf type {@code VE572.BaseMessage}
    */
   public  static final class BaseMessage extends
@@ -860,30 +824,18 @@ public final class MyBase {
     public static final int HEAD_FIELD_NUMBER = 1;
     private com.proto2.message.MyBase.Head head_;
     /**
-     * <pre>
-     * 协议头
-     * </pre>
-     *
      * <code>required .VE572.Head head = 1;</code>
      */
     public boolean hasHead() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <pre>
-     * 协议头
-     * </pre>
-     *
      * <code>required .VE572.Head head = 1;</code>
      */
     public com.proto2.message.MyBase.Head getHead() {
       return head_ == null ? com.proto2.message.MyBase.Head.getDefaultInstance() : head_;
     }
     /**
-     * <pre>
-     * 协议头
-     * </pre>
-     *
      * <code>required .VE572.Head head = 1;</code>
      */
     public com.proto2.message.MyBase.HeadOrBuilder getHeadOrBuilder() {
@@ -893,30 +845,18 @@ public final class MyBase {
     public static final int BODY_FIELD_NUMBER = 2;
     private com.proto2.message.MyBase.Body body_;
     /**
-     * <pre>
-     * 协议体
-     * </pre>
-     *
      * <code>required .VE572.Body body = 2;</code>
      */
     public boolean hasBody() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <pre>
-     * 协议体
-     * </pre>
-     *
      * <code>required .VE572.Body body = 2;</code>
      */
     public com.proto2.message.MyBase.Body getBody() {
       return body_ == null ? com.proto2.message.MyBase.Body.getDefaultInstance() : body_;
     }
     /**
-     * <pre>
-     * 协议体
-     * </pre>
-     *
      * <code>required .VE572.Body body = 2;</code>
      */
     public com.proto2.message.MyBase.BodyOrBuilder getBodyOrBuilder() {
@@ -1112,10 +1052,6 @@ public final class MyBase {
       return builder;
     }
     /**
-     * <pre>
-     * base所有协议的总名字空间
-     * </pre>
-     *
      * Protobuf type {@code VE572.BaseMessage}
      */
     public static final class Builder extends
@@ -1297,20 +1233,12 @@ public final class MyBase {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.proto2.message.MyBase.Head, com.proto2.message.MyBase.Head.Builder, com.proto2.message.MyBase.HeadOrBuilder> headBuilder_;
       /**
-       * <pre>
-       * 协议头
-       * </pre>
-       *
        * <code>required .VE572.Head head = 1;</code>
        */
       public boolean hasHead() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <pre>
-       * 协议头
-       * </pre>
-       *
        * <code>required .VE572.Head head = 1;</code>
        */
       public com.proto2.message.MyBase.Head getHead() {
@@ -1321,10 +1249,6 @@ public final class MyBase {
         }
       }
       /**
-       * <pre>
-       * 协议头
-       * </pre>
-       *
        * <code>required .VE572.Head head = 1;</code>
        */
       public Builder setHead(com.proto2.message.MyBase.Head value) {
@@ -1341,10 +1265,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 协议头
-       * </pre>
-       *
        * <code>required .VE572.Head head = 1;</code>
        */
       public Builder setHead(
@@ -1359,10 +1279,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 协议头
-       * </pre>
-       *
        * <code>required .VE572.Head head = 1;</code>
        */
       public Builder mergeHead(com.proto2.message.MyBase.Head value) {
@@ -1383,10 +1299,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 协议头
-       * </pre>
-       *
        * <code>required .VE572.Head head = 1;</code>
        */
       public Builder clearHead() {
@@ -1400,10 +1312,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 协议头
-       * </pre>
-       *
        * <code>required .VE572.Head head = 1;</code>
        */
       public com.proto2.message.MyBase.Head.Builder getHeadBuilder() {
@@ -1412,10 +1320,6 @@ public final class MyBase {
         return getHeadFieldBuilder().getBuilder();
       }
       /**
-       * <pre>
-       * 协议头
-       * </pre>
-       *
        * <code>required .VE572.Head head = 1;</code>
        */
       public com.proto2.message.MyBase.HeadOrBuilder getHeadOrBuilder() {
@@ -1427,10 +1331,6 @@ public final class MyBase {
         }
       }
       /**
-       * <pre>
-       * 协议头
-       * </pre>
-       *
        * <code>required .VE572.Head head = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -1451,20 +1351,12 @@ public final class MyBase {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.proto2.message.MyBase.Body, com.proto2.message.MyBase.Body.Builder, com.proto2.message.MyBase.BodyOrBuilder> bodyBuilder_;
       /**
-       * <pre>
-       * 协议体
-       * </pre>
-       *
        * <code>required .VE572.Body body = 2;</code>
        */
       public boolean hasBody() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <pre>
-       * 协议体
-       * </pre>
-       *
        * <code>required .VE572.Body body = 2;</code>
        */
       public com.proto2.message.MyBase.Body getBody() {
@@ -1475,10 +1367,6 @@ public final class MyBase {
         }
       }
       /**
-       * <pre>
-       * 协议体
-       * </pre>
-       *
        * <code>required .VE572.Body body = 2;</code>
        */
       public Builder setBody(com.proto2.message.MyBase.Body value) {
@@ -1495,10 +1383,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 协议体
-       * </pre>
-       *
        * <code>required .VE572.Body body = 2;</code>
        */
       public Builder setBody(
@@ -1513,10 +1397,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 协议体
-       * </pre>
-       *
        * <code>required .VE572.Body body = 2;</code>
        */
       public Builder mergeBody(com.proto2.message.MyBase.Body value) {
@@ -1537,10 +1417,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 协议体
-       * </pre>
-       *
        * <code>required .VE572.Body body = 2;</code>
        */
       public Builder clearBody() {
@@ -1554,10 +1430,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 协议体
-       * </pre>
-       *
        * <code>required .VE572.Body body = 2;</code>
        */
       public com.proto2.message.MyBase.Body.Builder getBodyBuilder() {
@@ -1566,10 +1438,6 @@ public final class MyBase {
         return getBodyFieldBuilder().getBuilder();
       }
       /**
-       * <pre>
-       * 协议体
-       * </pre>
-       *
        * <code>required .VE572.Body body = 2;</code>
        */
       public com.proto2.message.MyBase.BodyOrBuilder getBodyOrBuilder() {
@@ -1581,10 +1449,6 @@ public final class MyBase {
         }
       }
       /**
-       * <pre>
-       * 协议体
-       * </pre>
-       *
        * <code>required .VE572.Body body = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -1654,35 +1518,19 @@ public final class MyBase {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * 协议类型
-     * </pre>
-     *
      * <code>required int32 message_type = 2;</code>
      */
     boolean hasMessageType();
     /**
-     * <pre>
-     * 协议类型
-     * </pre>
-     *
      * <code>required int32 message_type = 2;</code>
      */
     int getMessageType();
 
     /**
-     * <pre>
-     * 子进程序号
-     * </pre>
-     *
      * <code>optional int32 worker_index = 3;</code>
      */
     boolean hasWorkerIndex();
     /**
-     * <pre>
-     * 子进程序号
-     * </pre>
-     *
      * <code>optional int32 worker_index = 3;</code>
      */
     int getWorkerIndex();
@@ -1825,20 +1673,12 @@ public final class MyBase {
     public static final int MESSAGE_TYPE_FIELD_NUMBER = 2;
     private int messageType_;
     /**
-     * <pre>
-     * 协议类型
-     * </pre>
-     *
      * <code>required int32 message_type = 2;</code>
      */
     public boolean hasMessageType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <pre>
-     * 协议类型
-     * </pre>
-     *
      * <code>required int32 message_type = 2;</code>
      */
     public int getMessageType() {
@@ -1848,20 +1688,12 @@ public final class MyBase {
     public static final int WORKER_INDEX_FIELD_NUMBER = 3;
     private int workerIndex_;
     /**
-     * <pre>
-     * 子进程序号
-     * </pre>
-     *
      * <code>optional int32 worker_index = 3;</code>
      */
     public boolean hasWorkerIndex() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <pre>
-     * 子进程序号
-     * </pre>
-     *
      * <code>optional int32 worker_index = 3;</code>
      */
     public int getWorkerIndex() {
@@ -2329,30 +2161,18 @@ public final class MyBase {
 
       private int messageType_ ;
       /**
-       * <pre>
-       * 协议类型
-       * </pre>
-       *
        * <code>required int32 message_type = 2;</code>
        */
       public boolean hasMessageType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <pre>
-       * 协议类型
-       * </pre>
-       *
        * <code>required int32 message_type = 2;</code>
        */
       public int getMessageType() {
         return messageType_;
       }
       /**
-       * <pre>
-       * 协议类型
-       * </pre>
-       *
        * <code>required int32 message_type = 2;</code>
        */
       public Builder setMessageType(int value) {
@@ -2362,10 +2182,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 协议类型
-       * </pre>
-       *
        * <code>required int32 message_type = 2;</code>
        */
       public Builder clearMessageType() {
@@ -2377,30 +2193,18 @@ public final class MyBase {
 
       private int workerIndex_ ;
       /**
-       * <pre>
-       * 子进程序号
-       * </pre>
-       *
        * <code>optional int32 worker_index = 3;</code>
        */
       public boolean hasWorkerIndex() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <pre>
-       * 子进程序号
-       * </pre>
-       *
        * <code>optional int32 worker_index = 3;</code>
        */
       public int getWorkerIndex() {
         return workerIndex_;
       }
       /**
-       * <pre>
-       * 子进程序号
-       * </pre>
-       *
        * <code>optional int32 worker_index = 3;</code>
        */
       public Builder setWorkerIndex(int value) {
@@ -2410,10 +2214,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 子进程序号
-       * </pre>
-       *
        * <code>optional int32 worker_index = 3;</code>
        */
       public Builder clearWorkerIndex() {
@@ -2752,11 +2552,6 @@ public final class MyBase {
     com.proto2.message.MyBase.HeartBeatResponseOrBuilder getHeartBeatResponseOrBuilder();
   }
   /**
-   * <pre>
-   * 消息体所有的内容都是可选的，需要配合消息头中的message_type进行检查，
-   * 必须有一个消息体
-   * </pre>
-   *
    * Protobuf type {@code VE572.Body}
    */
   public  static final class Body extends
@@ -3143,11 +2938,6 @@ public final class MyBase {
       return builder;
     }
     /**
-     * <pre>
-     * 消息体所有的内容都是可选的，需要配合消息头中的message_type进行检查，
-     * 必须有一个消息体
-     * </pre>
-     *
      * Protobuf type {@code VE572.Body}
      */
     public static final class Builder extends
@@ -3776,53 +3566,29 @@ public final class MyBase {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * 返回值
-     * </pre>
-     *
      * <code>required int32 retcode = 1;</code>
      */
     boolean hasRetcode();
     /**
-     * <pre>
-     * 返回值
-     * </pre>
-     *
      * <code>required int32 retcode = 1;</code>
      */
     int getRetcode();
 
     /**
-     * <pre>
-     * 当返回值不为0时，包含错误信息
-     * </pre>
-     *
      * <code>optional string error_message = 2;</code>
      */
     boolean hasErrorMessage();
     /**
-     * <pre>
-     * 当返回值不为0时，包含错误信息
-     * </pre>
-     *
      * <code>optional string error_message = 2;</code>
      */
     java.lang.String getErrorMessage();
     /**
-     * <pre>
-     * 当返回值不为0时，包含错误信息
-     * </pre>
-     *
      * <code>optional string error_message = 2;</code>
      */
     com.google.protobuf.ByteString
         getErrorMessageBytes();
   }
   /**
-   * <pre>
-   * 通用的返回码
-   * </pre>
-   *
    * Protobuf type {@code VE572.ResponseCode}
    */
   public  static final class ResponseCode extends
@@ -3909,20 +3675,12 @@ public final class MyBase {
     public static final int RETCODE_FIELD_NUMBER = 1;
     private int retcode_;
     /**
-     * <pre>
-     * 返回值
-     * </pre>
-     *
      * <code>required int32 retcode = 1;</code>
      */
     public boolean hasRetcode() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <pre>
-     * 返回值
-     * </pre>
-     *
      * <code>required int32 retcode = 1;</code>
      */
     public int getRetcode() {
@@ -3932,20 +3690,12 @@ public final class MyBase {
     public static final int ERROR_MESSAGE_FIELD_NUMBER = 2;
     private volatile java.lang.Object errorMessage_;
     /**
-     * <pre>
-     * 当返回值不为0时，包含错误信息
-     * </pre>
-     *
      * <code>optional string error_message = 2;</code>
      */
     public boolean hasErrorMessage() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <pre>
-     * 当返回值不为0时，包含错误信息
-     * </pre>
-     *
      * <code>optional string error_message = 2;</code>
      */
     public java.lang.String getErrorMessage() {
@@ -3963,10 +3713,6 @@ public final class MyBase {
       }
     }
     /**
-     * <pre>
-     * 当返回值不为0时，包含错误信息
-     * </pre>
-     *
      * <code>optional string error_message = 2;</code>
      */
     public com.google.protobuf.ByteString
@@ -4159,10 +3905,6 @@ public final class MyBase {
       return builder;
     }
     /**
-     * <pre>
-     * 通用的返回码
-     * </pre>
-     *
      * Protobuf type {@code VE572.ResponseCode}
      */
     public static final class Builder extends
@@ -4317,30 +4059,18 @@ public final class MyBase {
 
       private int retcode_ ;
       /**
-       * <pre>
-       * 返回值
-       * </pre>
-       *
        * <code>required int32 retcode = 1;</code>
        */
       public boolean hasRetcode() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <pre>
-       * 返回值
-       * </pre>
-       *
        * <code>required int32 retcode = 1;</code>
        */
       public int getRetcode() {
         return retcode_;
       }
       /**
-       * <pre>
-       * 返回值
-       * </pre>
-       *
        * <code>required int32 retcode = 1;</code>
        */
       public Builder setRetcode(int value) {
@@ -4350,10 +4080,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 返回值
-       * </pre>
-       *
        * <code>required int32 retcode = 1;</code>
        */
       public Builder clearRetcode() {
@@ -4365,20 +4091,12 @@ public final class MyBase {
 
       private java.lang.Object errorMessage_ = "";
       /**
-       * <pre>
-       * 当返回值不为0时，包含错误信息
-       * </pre>
-       *
        * <code>optional string error_message = 2;</code>
        */
       public boolean hasErrorMessage() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <pre>
-       * 当返回值不为0时，包含错误信息
-       * </pre>
-       *
        * <code>optional string error_message = 2;</code>
        */
       public java.lang.String getErrorMessage() {
@@ -4396,10 +4114,6 @@ public final class MyBase {
         }
       }
       /**
-       * <pre>
-       * 当返回值不为0时，包含错误信息
-       * </pre>
-       *
        * <code>optional string error_message = 2;</code>
        */
       public com.google.protobuf.ByteString
@@ -4416,10 +4130,6 @@ public final class MyBase {
         }
       }
       /**
-       * <pre>
-       * 当返回值不为0时，包含错误信息
-       * </pre>
-       *
        * <code>optional string error_message = 2;</code>
        */
       public Builder setErrorMessage(
@@ -4433,10 +4143,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 当返回值不为0时，包含错误信息
-       * </pre>
-       *
        * <code>optional string error_message = 2;</code>
        */
       public Builder clearErrorMessage() {
@@ -4446,10 +4152,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * 当返回值不为0时，包含错误信息
-       * </pre>
-       *
        * <code>optional string error_message = 2;</code>
        */
       public Builder setErrorMessageBytes(
@@ -4516,44 +4218,24 @@ public final class MyBase {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * IP地址
-     * </pre>
-     *
      * <code>required string ip = 1;</code>
      */
     boolean hasIp();
     /**
-     * <pre>
-     * IP地址
-     * </pre>
-     *
      * <code>required string ip = 1;</code>
      */
     java.lang.String getIp();
     /**
-     * <pre>
-     * IP地址
-     * </pre>
-     *
      * <code>required string ip = 1;</code>
      */
     com.google.protobuf.ByteString
         getIpBytes();
 
     /**
-     * <pre>
-     * IP类型，可能是内网、BGP、电信、联通、移动、东方有线、电信通等等
-     * </pre>
-     *
      * <code>required uint32 type = 2;</code>
      */
     boolean hasType();
     /**
-     * <pre>
-     * IP类型，可能是内网、BGP、电信、联通、移动、东方有线、电信通等等
-     * </pre>
-     *
      * <code>required uint32 type = 2;</code>
      */
     int getType();
@@ -4649,20 +4331,12 @@ public final class MyBase {
     public static final int IP_FIELD_NUMBER = 1;
     private volatile java.lang.Object ip_;
     /**
-     * <pre>
-     * IP地址
-     * </pre>
-     *
      * <code>required string ip = 1;</code>
      */
     public boolean hasIp() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <pre>
-     * IP地址
-     * </pre>
-     *
      * <code>required string ip = 1;</code>
      */
     public java.lang.String getIp() {
@@ -4680,10 +4354,6 @@ public final class MyBase {
       }
     }
     /**
-     * <pre>
-     * IP地址
-     * </pre>
-     *
      * <code>required string ip = 1;</code>
      */
     public com.google.protobuf.ByteString
@@ -4703,20 +4373,12 @@ public final class MyBase {
     public static final int TYPE_FIELD_NUMBER = 2;
     private int type_;
     /**
-     * <pre>
-     * IP类型，可能是内网、BGP、电信、联通、移动、东方有线、电信通等等
-     * </pre>
-     *
      * <code>required uint32 type = 2;</code>
      */
     public boolean hasType() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <pre>
-     * IP类型，可能是内网、BGP、电信、联通、移动、东方有线、电信通等等
-     * </pre>
-     *
      * <code>required uint32 type = 2;</code>
      */
     public int getType() {
@@ -5064,20 +4726,12 @@ public final class MyBase {
 
       private java.lang.Object ip_ = "";
       /**
-       * <pre>
-       * IP地址
-       * </pre>
-       *
        * <code>required string ip = 1;</code>
        */
       public boolean hasIp() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <pre>
-       * IP地址
-       * </pre>
-       *
        * <code>required string ip = 1;</code>
        */
       public java.lang.String getIp() {
@@ -5095,10 +4749,6 @@ public final class MyBase {
         }
       }
       /**
-       * <pre>
-       * IP地址
-       * </pre>
-       *
        * <code>required string ip = 1;</code>
        */
       public com.google.protobuf.ByteString
@@ -5115,10 +4765,6 @@ public final class MyBase {
         }
       }
       /**
-       * <pre>
-       * IP地址
-       * </pre>
-       *
        * <code>required string ip = 1;</code>
        */
       public Builder setIp(
@@ -5132,10 +4778,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * IP地址
-       * </pre>
-       *
        * <code>required string ip = 1;</code>
        */
       public Builder clearIp() {
@@ -5145,10 +4787,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * IP地址
-       * </pre>
-       *
        * <code>required string ip = 1;</code>
        */
       public Builder setIpBytes(
@@ -5164,30 +4802,18 @@ public final class MyBase {
 
       private int type_ ;
       /**
-       * <pre>
-       * IP类型，可能是内网、BGP、电信、联通、移动、东方有线、电信通等等
-       * </pre>
-       *
        * <code>required uint32 type = 2;</code>
        */
       public boolean hasType() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <pre>
-       * IP类型，可能是内网、BGP、电信、联通、移动、东方有线、电信通等等
-       * </pre>
-       *
        * <code>required uint32 type = 2;</code>
        */
       public int getType() {
         return type_;
       }
       /**
-       * <pre>
-       * IP类型，可能是内网、BGP、电信、联通、移动、东方有线、电信通等等
-       * </pre>
-       *
        * <code>required uint32 type = 2;</code>
        */
       public Builder setType(int value) {
@@ -5197,10 +4823,6 @@ public final class MyBase {
         return this;
       }
       /**
-       * <pre>
-       * IP类型，可能是内网、BGP、电信、联通、移动、东方有线、电信通等等
-       * </pre>
-       *
        * <code>required uint32 type = 2;</code>
        */
       public Builder clearType() {
@@ -5882,10 +5504,6 @@ public final class MyBase {
     com.google.protobuf.ByteString getPayload(int index);
   }
   /**
-   * <pre>
-   * 心跳请求，有效载荷由通信的双方协定
-   * </pre>
-   *
    * Protobuf type {@code VE572.HeartBeatRequest}
    */
   public  static final class HeartBeatRequest extends
@@ -6148,10 +5766,6 @@ public final class MyBase {
       return builder;
     }
     /**
-     * <pre>
-     * 心跳请求，有效载荷由通信的双方协定
-     * </pre>
-     *
      * Protobuf type {@code VE572.HeartBeatRequest}
      */
     public static final class Builder extends
@@ -6447,10 +6061,6 @@ public final class MyBase {
     com.google.protobuf.ByteString getPayload(int index);
   }
   /**
-   * <pre>
-   * 心跳应答，有效载荷由通信的双方协定
-   * </pre>
-   *
    * Protobuf type {@code VE572.HeartBeatResponse}
    */
   public  static final class HeartBeatResponse extends
@@ -6772,10 +6382,6 @@ public final class MyBase {
       return builder;
     }
     /**
-     * <pre>
-     * 心跳应答，有效载荷由通信的双方协定
-     * </pre>
-     *
      * Protobuf type {@code VE572.HeartBeatResponse}
      */
     public static final class Builder extends
@@ -7234,10 +6840,6 @@ public final class MyBase {
     int getSockPort();
   }
   /**
-   * <pre>
-   * 内部协议头，用来标识连接信息
-   * </pre>
-   *
    * Protobuf type {@code VE572.InternalHead}
    */
   public  static final class InternalHead extends
@@ -7654,10 +7256,6 @@ public final class MyBase {
       return builder;
     }
     /**
-     * <pre>
-     * 内部协议头，用来标识连接信息
-     * </pre>
-     *
      * Protobuf type {@code VE572.InternalHead}
      */
     public static final class Builder extends
