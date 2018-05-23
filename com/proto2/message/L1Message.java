@@ -28,12 +28,6 @@ public final class L1Message {
   public enum MessageType
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <pre>
-     * ================================================================================
-     * 用于demo的协议包[200-210)
-     * ================================================================================
-     * </pre>
-     *
      * <code>BEGINNING_ID = 199;</code>
      */
     BEGINNING_ID(199),
@@ -76,12 +70,6 @@ public final class L1Message {
     ;
 
     /**
-     * <pre>
-     * ================================================================================
-     * 用于demo的协议包[200-210)
-     * ================================================================================
-     * </pre>
-     *
      * <code>BEGINNING_ID = 199;</code>
      */
     public static final int BEGINNING_ID_VALUE = 199;
@@ -7182,9 +7170,7 @@ public final class L1Message {
   public static final int CLIENT_BEGIN_REQUEST_FIELD_NUMBER = 200;
   /**
    * <pre>
-   * ================================================================================
-   * 用于demo的协议包[200-210)
-   * ================================================================================
+   * -------------------------------
    * </pre>
    *
    * <code>extend .VE572.Body { ... }</code>
