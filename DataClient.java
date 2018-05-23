@@ -10,7 +10,6 @@ import com.proto2.message.MyBase.Head;
 import com.proto2.message.Mybase.*;
 
 import MySocket.*;
-import javafx.util.converter.ByteStringConverter;
 
 public class DataClient {
 
@@ -33,27 +32,52 @@ public class DataClient {
         public int count = null;
     }
 
-    public static class Client extends MachineFactory {
+    public static class Client {
 
         private RequestInfo mReqInfo = null;
         private ResponseInfo mRspInfo = null;
 
-        public Client(Socket socket, int clientNumber) {
+        public Client(String ip, int port, int clientNumber) { // establish a client connection
             mSocket = new Socket(ip, port);
             mclientNumber = clientNumber;
+            log("Connect to ip: " + ip + " port: " + port, mclientNumber);
         }
 
-        public void Disconnect(Socket socket) {
+        public void Disconnect(Socket socket) { // called before client terminal close
             socket.close();
+            log("Connection closed", mclientNumber);
         }
 
-        public void run() {
-            try {
-                WriteToPeer();
-                ReadFromPeer();
-            } catch (Exception e) {
-                log(e);
+        public void SetMsgOut(RequestInfo req_info) { // set up request
+            mReqInfo = req_info;
+            log("Resquest set up: " + mReqInfo.message_type, mclientNumber);
+        }
+
+        public RequestInfo GetMsgOut() {
+            return mReqInfo;
+        }
+
+        public ResponseInfo GetMsgIn() { // get response
+            return mRspInfo;
+        }
+
+        /*
+         * public void run() { try { WriteToPeer(); ReadFromPeer(); } catch (Exception
+         * e) { log(e); } }
+         */
+        public void ReadFromPeer() { // client receive response from server
+            InputStream in = mSocket.getInputStream();
+            while (in.available() == 0) {
             }
+            MsgIn = BaseMessage.parseFrom(in);
+            HandlerIn();
+        }
+
+        public void WriteToPeer() { // client send request to server
+            HandlerOut();
+            OutputStream out = mSocket.getOutputStream();
+            MsgOut.writeTo(out);
+            // out.close();
         }
 
         private void HandlerIn() {
@@ -83,6 +107,8 @@ public class DataClient {
                 break;
             }
 
+            log("Response recieved: " + iMessageType, mclientNumber);
+
         }
 
         private void HandlerOut() {
@@ -103,18 +129,8 @@ public class DataClient {
                 body.setExtension(query_data_request, req);
             }
             MsgOut = BaseMessage.newBuilder().setHead(head).setBody(body).build();
+            log("Request sent: " + mReqInfo.message_type, mclientNumber);
         }
 
-        public void SetMsgOut(RequestInfo req_info) {
-            mReqInfo = req_info;
-        }
-
-        public ResponseInfo GetMsgOut() {
-            return mReqInfo;
-        }
-
-        public ResponseInfo GetMsgIn() {
-            return mRspInfo;
-        }
     }
 }

@@ -33,13 +33,6 @@ public class DataServer {
             mclientNumber = clientNumber;
         }
 
-        /*
-         * private void log(Exception e) { System.out.println("Error handling client# "
-         * + mclientNumber + ": " + e); e.printStackTrace(); }
-         * 
-         * private void log(String message) { System.out.println(message); }
-         */
-
         private void HandlerOut() {
             Head headIn = msg.getHead();
             int iMessageType = headIn.getMessageType();
@@ -86,14 +79,14 @@ public class DataServer {
                         break;
                 }
             } catch (Exception e) {
-                log(e);
+                log(e, mclientNumber);
             } finally {
                 try {
                     socket.close();
                 } catch (IOException e) {
-                    log("Couldn't close a socket");
+                    log(e, mclientNumber);
                 }
-                log("Connection with client# " + clientNumber + " closed");
+                log("Connection closed", mclientNumber);
             }
         }
 

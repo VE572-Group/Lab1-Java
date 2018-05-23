@@ -5,10 +5,31 @@ import com.google.protobuf.*;
 import com.proto2.message.L1Message.*;
 import com.proto2.message.Mybase.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class MySocket {
 
-    public void log(String message) {
-        System.out.println(message);
+    private String logfile = "L1.log";
+    private PrintWriter print_writer = null;
+    private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+    public void OpenLog() throws IOException {
+        print_writer = new PrintWriter(new FileWriter(logfile));
+    }
+
+    public void CloseLog() throws IOException {
+        print_writer.close();
+    }
+
+    public void log(String message, int clientNumber) {
+        Date date = new Date();
+        print_writer.println(sdf.format(date) + " Client#" + clientNumber + ": " + message);
+    }
+
+    public void log(Exception e, int clientNumber) {
+        Date date = new Date();
+        print_writer.println(sdf.format(date) + " Error handling client# " + clientNumber + ": " + e);
     }
 
     public class SocketEndException extends Exception {
@@ -20,11 +41,6 @@ public class MySocket {
         private int mclientNumber;
         private BaseMessage MsgOut = null;
         private BaseMessage MsgIn = null;
-
-        private void log(Exception e) {
-            System.out.println("Error handling client# " + mclientNumber + ": " + e);
-            e.printStackTrace();
-        }
 
         public void ReadFromPeer() {
             InputStream in = mSocket.getInputStream();
