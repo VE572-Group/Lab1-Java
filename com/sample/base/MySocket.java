@@ -3,12 +3,10 @@ package com.sample.base;
 import java.net.*;
 import java.io.*;
 
-import com.google.protobuf.*;
-import com.proto2.message.L1Message.*;
-import com.proto2.message.Mybase.*;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
+import java.util.Date;
 
 public class MySocket {
 
@@ -16,23 +14,32 @@ public class MySocket {
     private PrintWriter print_writer = null;
     private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
+    public enum MessageType {
+        CLIENT_BEGIN_REQUEST(200), CLIENT_BEGIN_RESPONSE(201), CLIENT_END_REQUEST(202), CLIENT_END_RESPONSE(203),
+        SEND_DATA_REQUEST(204), SEND_DATA_RESPONSE(205), QUERY_DATA_REQUEST(206), QUERY_DATA_RESPONSE(207)
+    }
+
+    public enum OpType {
+        MAX(1), MIN(2), AVG(3), SUM(4), MEDIAN(5)
+    }
+
     public static class RequestInfo {
-        public int message_type = null;
-        public int data_size = null;
-        public int data_type = null;
-        public ByteString data = null;
-        public String op_name = null;
-        public OpType op_type = null;
+        public MessageType message_type;
+        public int data_size;
+        public String data_type;
+        public byte[] data;
+        public String op_name;
+        public OpType op_type;
     }
 
     public static class ResponseInfo {
-        public int message_type = null;
-        public int rc = null;
-        public String name = null;
-        public String quantity = null;
-        public ByteString value = null;
-        public String unit = null;
-        public int count = null;
+        public MessageType message_type;
+        public int rc;
+        public String name;
+        public String quantity;
+        public byte[] value;
+        public String unit;
+        public int count;
     }
 
     public void OpenLog() throws IOException {
@@ -45,26 +52,22 @@ public class MySocket {
 
     public void log(String message, int clientNumber) {
         Date date = new Date();
-        print_writer.println(sdf.format(date) + " Client#" + clientNumber + ": " + message);
+        System.out.println(sdf.format(date) + " Client#" + clientNumber + ": " + message);
     }
 
     public void log(Exception e, int clientNumber) {
         Date date = new Date();
-        print_writer.println(sdf.format(date) + " Error handling client# " + clientNumber + ": " + e);
-    }
-
-    public class SocketEndException extends Exception {
-        static final long serialVersionUID = 7818375838146190175L;
+        System.out..println(sdf.format(date) + " Error handling client# " + clientNumber + ": " + e);
     }
 
     public static class MachineFactory {
-        private Socket mSocket = null;
-        private int mclientNumber = -1;
-        private BaseMessage MsgOut = null;
-        private BaseMessage MsgIn = null;
-        private RequestInfo mReqInfo = null;
-        private ResponseInfo mRspInfo = null;
-        private int mAllowed = -1; // init to -1, begin is 0; end is 1;
+        protected Socket mSocket;
+        protected int mclientNumber = -1;
+        // protected BaseMessage MsgOut = null;
+        // protected BaseMessage MsgIn = null;
+        protected RequestInfo mReqInfo;
+        protected ResponseInfo mRspInfo;
+        protected int mAllowed = -1; // init to -1, begin is 0; end is 1;
 
         public MachineFactory(Socket socket, int clientNumber) {
             mSocket = socket;
@@ -76,26 +79,38 @@ public class MySocket {
         public void run() {
         }
 
-        private void ReadFromPeer() {
-            InputStream in = mSocket.getInputStream();
+        protected void ReadRequest() {
+            ObjectInputStream in = new ObjectInputStream(mSocket.getInputStream());
             while (in.available() == 0) {
             }
-            MsgIn = BaseMessage.parseFrom(in);
-            // in.close();
-            HandlerIn();
+            mReqInfo = (RequestInfo) in.readObject();
+            HandleRequest();
         }
 
-        private void WriteToPeer() {
-            HandlerOut();
-            OutputStream out = mSocket.getOutputStream();
-            MsgOut.writeTo(out);
-            // out.close();
+        protected void WriteResquest() {
+            HandleRequest();
+            ObjectOutputStream out = new ObjectOutputStream(mSocket.getOutputStream());
+            out.writeObject(mReqInfo);
         }
 
-        private void HandlerIn() {
+        protected void ReadResponse() {
+            ObjectInputStream in = new ObjectInputStream(mSocket.getInputStream());
+            while (in.available() == 0) {
+            }
+            mRspInfo = (ResponseInfo) in.readObject();
+            HandleResponse();
         }
 
-        private void HandlerOut() {
+        protected void WriteResponse() {
+            HandleResponse();
+            ObjectOutputStream out = new ObjectOutputStream(mSocket.getOutputStream());
+            out.writeObject(mRspInfo);
+        }
+
+        protected void HandleRequest() {
+        }
+
+        protected void HandleResponse() {
         }
     }
 
