@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<atfx_file>
+  <instance_data>
+    <SubMatrix>
+      <Id>1</Id>
+      <Name>Channel</Name>
+      <SubMatrixNoRows>3001</SubMatrixNoRows>
+      <MimeType>application/x-asam.aosubmatrix</MimeType>
+      <LocalColumns>8136 8137 8138 8139 8140 8141 8142 8143 8144 8145 8146</LocalColumns>
+      <MeaResult>1</MeaResult>
+    </SubMatrix>
+    <MeaQuantity>
+      <Id>1</Id>
+      <Name>CHANNEL05</Name>
+      <DataType>DT_DOUBLE</DataType>
+      <MimeType>application/x-asam.aomea

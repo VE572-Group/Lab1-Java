@@ -17,8 +17,8 @@ public final class MyServer extends MachineFactory {
      * listener.close(); } }
      */
     // private static class Server extends MachineFactory {
-    private Socket mSocket = null;
-    private BaseMessage MsgOut = null;
+    // private Socket mSocket = null;
+    // private BaseMessage MsgOut = null;
 
     public MyServer(Socket socket, int clientNumber) {
         super(socket, clientNumber);
@@ -31,20 +31,22 @@ public final class MyServer extends MachineFactory {
                 WriteResponse();
             }
         } catch (Exception e) {
-            log(e, mclientNumber);
+            // log(e, mclientNumber);
+            e.printStackTrace();
         } finally {
             try {
-                socket.close();
+                mSocket.close();
             } catch (IOException e) {
-                log(e, mclientNumber);
+                // log(e, mclientNumber);
+                e.printStackTrace();
             }
             // log("Connection closed", mclientNumber);
         }
     }
 
     protected void HandleRequest() {
-        int iMessageType = mReqInfo.message_type;
-        if (iMessageType == SEND_DATA_REQUEST) {
+        MessageType iMessageType = mReqInfo.message_type;
+        if (iMessageType == MessageType.SEND_DATA_REQUEST) {
             try {
                 FileOutputStream out = new FileOutputStream("validate." + mReqInfo.data_type);
                 out.write(mReqInfo.data);
@@ -53,33 +55,33 @@ public final class MyServer extends MachineFactory {
                 e.printStackTrace();
             }
         }
-        if (iMessageType == QUERY_DATA_REQUEST) {
+        if (iMessageType == MessageType.QUERY_DATA_REQUEST) {
             // to do interface
         }
-        if (iMessageType == CLIENT_BEGIN_REQUEST) {
+        if (iMessageType == MessageType.CLIENT_BEGIN_REQUEST) {
             mAllowed = 0;
         }
-        if (iMessageType == CLIENT_END_REQUEST) {
+        if (iMessageType == MessageType.CLIENT_END_REQUEST) {
             mAllowed = 1;
         }
     }
 
     protected void HandleResponse() {
-        int iMessageType = mReqInfo.message_type;
+        MessageType iMessageType = mReqInfo.message_type;
 
-        if (iMessageType == CLIENT_BEGIN_REQUEST) {
+        if (iMessageType == MessageType.CLIENT_BEGIN_REQUEST) {
             mRspInfo.rc = 0;
             mRspInfo.message_type = MessageType.CLIENT_BEGIN_RESPONSE;
         }
-        if (iMessageType == CLIENT_END_REQUEST) {
+        if (iMessageType == MessageType.CLIENT_END_REQUEST) {
             mRspInfo.rc = 0;
             mRspInfo.message_type = MessageType.CLIENT_END_RESPONSE;
         }
-        if (iMessageType == SEND_DATA_REQUEST) {
+        if (iMessageType == MessageType.SEND_DATA_REQUEST) {
             mRspInfo.rc = 0;
             mRspInfo.message_type = MessageType.SEND_DATA_RESPONSE;
         }
-        if (iMessageType == QUERY_DATA_REQUEST) {
+        if (iMessageType == MessageType.QUERY_DATA_REQUEST) {
             mRspInfo.message_type = MessageType.QUERY_DATA_RESPONSE;
         }
     }
