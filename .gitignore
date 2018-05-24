@@ -1,4 +1,6 @@
 data/
+*.XML
+*.BIN
 
 # Compiled class file
 *.class
