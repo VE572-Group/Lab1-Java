@@ -4,10 +4,10 @@ import java.net.*;
 import java.io.*;
 
 import com.google.protobuf.*;
-import com.proto2.message.L1Message.*;
-import com.proto2.message.Mybase.*;
+import com.proto2.message.*;
+import com.proto2.message.*;
 
-import MySocket.*;
+import sample.*;
 
 public class DataServer {
 
@@ -100,14 +100,14 @@ public class DataServer {
             }
             if (iMessageType == CLIENT_BEGIN_REQUEST) {
                 ResponseCode rc = ResponseCode.newBuilder().setRc(0).build();
-                ClientBeginResponse rsp = ClientBeginResponse.newBuilder().setRc(rc)..build();
+                ClientBeginResponse rsp = ClientBeginResponse.newBuilder().setRc(rc).build();
 
                 Head.setMessageType(CLIENT_BEGIN_RESPONSE);
                 Body.setExtension(client_begin_response, rsp);
             }
             if (iMessageType == QUERY_DATA_REQUEST) {
                 ResponseCode rc = ResponseCode.newBuilder().setRc(0).build();
-                ClientEndResponse rsp = ClientEndResponse.newBuilder().setRc(rc)..build();
+                ClientEndResponse rsp = ClientEndResponse.newBuilder().setRc(rc).build();
 
                 Head.setMessageType(CLIENT_END_RESPONSE);
                 Body.setExtension(client_end_response, rsp);
