@@ -1,4 +1,4 @@
-package com.sample.binary;
+package com.sample.base;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
