@@ -33,7 +33,7 @@ public class MySocket {
         public int rc;
         public String name;
         public String quantity;
-        public byte[] value;
+        public Double value;
         public String unit;
         public int count;
     }
