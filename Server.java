@@ -1,10 +1,16 @@
 import com.sample.base.MySocket.*;
 import com.sample.base.MySocket;
+import com.sample.base.BinaryHandler;
+import com.sample.base.CSVReader.*;
+import com.sample.base.CSVReader;
 
 import java.net.*;
 import java.io.*;
 
 import java.util.regex.*;
+import java.util.stream.DoubleStream;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -32,8 +38,11 @@ public class Server {
         private int mclientNumber = -1;
         private int mAllowed = -1; // init to -1, begin is 0; end is 1;
         private boolean mDataIncome = false;
+        private boolean mFirstQuery = true;
+        private String mCSVFile;
         private RequestInfo mReqInfo;
         private ResponseInfo mRspInfo;
+        private DataFrame mData;
 
         private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
@@ -42,6 +51,7 @@ public class Server {
             mclientNumber = clientNumber;
             mReqInfo = new RequestInfo();
             mRspInfo = new ResponseInfo();
+            log("Client Accepted", mclientNumber);
         }
 
         private void ReadRequest() {
@@ -70,6 +80,10 @@ public class Server {
             try {
                 PrintWriter output = new PrintWriter(mSocket.getOutputStream(), true);
                 output.println("OK");
+                if (mReqInfo.message_type == MessageType.QUERY_DATA_REQUEST) {
+                    output.println("RESULT " + mRspInfo.name + " OF " + mRspInfo.quantity + " " + mRspInfo.value + " "
+                            + mRspInfo.unit + " FROM " + mRspInfo.count + " POINTS.");
+                }
             } catch (Exception e) {
                 log(e, mclientNumber);
             }
@@ -112,10 +126,67 @@ public class Server {
                     } else {
                         mDataIncome = true;
                     }
-
                 }
             if (mReqInfo.message_type == MessageType.QUERY_DATA_REQUEST) {
+                try {
+                    if (mFirstQuery) {
+                        mCSVFile = BinaryHandler.parseFile("client" + mclientNumber + ".XML",
+                                "client" + mclientNumber + ".BIN");
+                        mFirstQuery = false;
 
+                    }
+                    mData = CSVReader.read(mCSVFile);
+                    QueryData();
+                    log("Queryed Data", mclientNumber);
+                } catch (Exception e) {
+                    log(e, mclientNumber);
+                }
+
+            }
+        }
+
+        private void QueryData() {
+            if (!mData.name.contains(mReqInfo.op_name)) {
+                mRspInfo.unit = null;
+                mRspInfo.value = null;
+                mRspInfo.name = null;
+                mRspInfo.count = -1;
+                mRspInfo.quantity = null;
+            } else {
+                mRspInfo.unit = mData.unit.get(mReqInfo.op_name);
+                mRspInfo.name = mReqInfo.op_name;
+                mRspInfo.quantity = mData.quantity.get(mReqInfo.op_name);
+                mRspInfo.count = mData.value.get(mReqInfo.op_name).size();
+
+                DoubleStream.Builder sBuilder = DoubleStream.builder();
+                for (Double e : mData.value.get(mReqInfo.op_name)) {
+                    sBuilder.add(e);
+                }
+                DoubleStream data_piece = sBuilder.build();
+
+                switch (mReqInfo.op_type) {
+                case MAX:
+                    mRspInfo.value = data_piece.max().getAsDouble();
+                    break;
+                case MIN:
+                    mRspInfo.value = data_piece.min().getAsDouble();
+                    break;
+                case AVG:
+                    mRspInfo.value = data_piece.average().getAsDouble();
+                    break;
+                case SUM:
+                    mRspInfo.value = data_piece.sum();
+                    break;
+                case MEDIAN:
+                    data_piece.sorted();
+                    int len = mRspInfo.count;
+                    double[] tmp = data_piece.toArray();
+                    if (len % 2 == 0)
+                        mRspInfo.value = (tmp[len / 2] + tmp[len / 2 + 1]) / 2;
+                    else
+                        mRspInfo.value = tmp[len / 2];
+                    break;
+                }
             }
         }
 

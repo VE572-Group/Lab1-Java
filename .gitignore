@@ -1,6 +1,7 @@
 data/
 *.XML
 *.BIN
+*.csv
 
 # Compiled class file
 *.class
