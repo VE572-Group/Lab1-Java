@@ -17,11 +17,18 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class BinaryHandler {
-	public static String parseFile(String args_1,String args_2) throws XPathExpressionException {
+	public static void main(String[] args) throws XPathExpressionException {
+		String binary="validate.bin";
+		String xml="validate.xml";
+		String outputFile=parseFile(binary,xml);
+		System.out.println(outputFile);
+		
+	}
+	public static String parseFile(String binaryFile,String xmlFile) throws XPathExpressionException {
 		try {
-		File input=new File("validate.bin");
+		File input=new File(binaryFile);
 		FileInputStream fis=new FileInputStream(input);
-		File xml= new File("validate.xml");
+		File xml= new File(xmlFile);
 		long length=input.length();
 		byte[] bytes = new byte[(int) length];
 		fis.read(bytes);
@@ -36,12 +43,13 @@ public class BinaryHandler {
         String expression_unit="/atfx_file/instance_data/MeaQuantity/Unit/text()";
         String expression_datatype="/atfx_file/instance_data/MeaQuantity/DataType/text()";
         String unit_name="/atfx_file/instance_data/Unit/Name/text()";
+        String expression_quantity="/atfx_file/instance_data/MeaQuantity/Quantity/text()";
         String external_blocksize="/atfx_file/instance_data/ExternalComponent/Blocksize/text()";
         String external_valuesperblock="/atfx_file/instance_data/ExternalComponent/ValuesPerBlock/text()";
         String external_valueoffset="/atfx_file/instance_data/ExternalComponent/ValueOffset/text()";
         String external_length="/atfx_file/instance_data/ExternalComponent/Length/text()";
         String external_startoffset="/atfx_file/instance_data/ExternalComponent/StartOffset/text()";
-
+        String quantity="/atfx_file/instance_data/Quantity/Name/text()";
         NodeList nodeList_name = (NodeList) xPath.compile(expression_name).evaluate(xmlDocument, XPathConstants.NODESET);
         NodeList nodeList_unit = (NodeList) xPath.compile(expression_unit).evaluate(xmlDocument, XPathConstants.NODESET);
         NodeList nodeList_unit_name=(NodeList) xPath.compile(unit_name).evaluate(xmlDocument, XPathConstants.NODESET);
@@ -51,9 +59,11 @@ public class BinaryHandler {
         NodeList nodeList_external_valueoffset=(NodeList) xPath.compile(external_valueoffset).evaluate(xmlDocument, XPathConstants.NODESET);
         NodeList nodeList_external_length=(NodeList) xPath.compile(external_length).evaluate(xmlDocument, XPathConstants.NODESET);
         NodeList nodeList_external_startoffset=(NodeList) xPath.compile(external_startoffset).evaluate(xmlDocument, XPathConstants.NODESET);
+        NodeList nodeList_getquantity=(NodeList) xPath.compile(quantity).evaluate(xmlDocument, XPathConstants.NODESET);
+        NodeList nodeList_quantity=(NodeList) xPath.compile(expression_quantity).evaluate(xmlDocument, XPathConstants.NODESET);
 
         int len=nodeList_name.getLength();
-		File file= new File("test_1.csv");
+		File file= new File("lab_1.csv");
 		 PrintWriter pw = new PrintWriter(file);
 		 StringBuilder sb = new StringBuilder();
 		//Name
@@ -74,12 +84,28 @@ public class BinaryHandler {
 		 		else sb.append(',');
 		 	
 		 	}
+		 	
+		 	
+	 	//Quantity
+		 	for(int i=0;i<len;i++) {
+		 		int index=Integer.valueOf(nodeList_quantity.item(i).getTextContent());
+		 		sb.append(nodeList_getquantity.item(index-1).getTextContent());
+		 		if(i==len-1) {
+		 			sb.append('\n');
+		 		}
+		 		else sb.append(',');
+		 	
+		 	}
+		 	
 	 	//int StartOffset
 	     //int Blocksize
 		 //int ValuesPerBlock
 		 //int ValueOffset
 	 	 //int Length
 	 	 //String DataType
+		 	
+		 	
+	
 		
 		//value 
 		 	for (int j=0;j<getMaxOfList(nodeList_external_length);j++) {
@@ -88,6 +114,7 @@ public class BinaryHandler {
 		 			int outerOffset=Integer.valueOf(nodeList_external_startoffset.item(i).getTextContent());
 		 			int innerOffset=Integer.valueOf(nodeList_external_valueoffset.item(i).getTextContent());
 		 			int step=Integer.valueOf(nodeList_external_blocksize.item(i).getTextContent());
+		 			int valuesperblock=Integer.valueOf(nodeList_external_valuesperblock.item(i).getTextContent());
 		 			switch(nodeList_datatype.item(i).getTextContent()) {
 		 			case "DT_FLOAT":
 		 				int id1=get32(bytes,j,outerOffset,innerOffset,step);
@@ -134,7 +161,7 @@ public class BinaryHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "test_1.csv";	
+		return "lab_1.csv";	
 		
 		
 	}
