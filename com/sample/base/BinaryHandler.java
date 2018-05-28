@@ -1,4 +1,4 @@
-package com.sample.base;
+package com.sample.binary;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -104,45 +104,93 @@ public class BinaryHandler {
 	 	 //int Length
 	 	 //String DataType
 		 	
-		 	
-	
-		
-		//value 
-		 	for (int j=0;j<getMaxOfList(nodeList_external_length);j++) {
-		 		for(int i=0;i<len;i++)
-		 		{
-		 			int outerOffset=Integer.valueOf(nodeList_external_startoffset.item(i).getTextContent());
-		 			int innerOffset=Integer.valueOf(nodeList_external_valueoffset.item(i).getTextContent());
-		 			int step=Integer.valueOf(nodeList_external_blocksize.item(i).getTextContent());
-		 			int valuesperblock=Integer.valueOf(nodeList_external_valuesperblock.item(i).getTextContent());
-		 			switch(nodeList_datatype.item(i).getTextContent()) {
+		 String[][] arr=new String[len][getMaxOfList(nodeList_external_length)];
+		 for (int i=0;i<len;i++) {
+			 int outerOffset=Integer.valueOf(nodeList_external_startoffset.item(i).getTextContent());
+	 			int innerOffset=Integer.valueOf(nodeList_external_valueoffset.item(i).getTextContent());
+	 			int step=Integer.valueOf(nodeList_external_blocksize.item(i).getTextContent());
+	 			int valuesperblock=Integer.valueOf(nodeList_external_valuesperblock.item(i).getTextContent());
+	 			int maxLength=getMaxOfList(nodeList_external_length);
+	 			int itemLength=Integer.valueOf(nodeList_external_length.item(i).getTextContent());
+	 			switch(nodeList_datatype.item(i).getTextContent()) {
 		 			case "DT_FLOAT":
-		 				int id1=get32(bytes,j,outerOffset,innerOffset,step);
-		 				float id_1=Float.intBitsToFloat(id1);
-		 				sb.append(id_1);
+		 				for (int j=0;j<maxLength;j++) {
+		 					if(itemLength>=j+1) {
+			 					int iteration=j/valuesperblock;
+			 					int blockOffset=j%valuesperblock;
+				 				int id1=get32(bytes,iteration,outerOffset,innerOffset+blockOffset*4,step);
+				 				float id_1=Float.intBitsToFloat(id1);
+				 				String id=Float.toString(id_1);
+				 				arr[i][j]=id;
+		 					}
+		 					else {
+		 						arr[i][j]="";
+		 					}
+		 				}
 		 				break;
 		 			case "DT_LONG":
-		 				long id_2=(long)get32(bytes,j,outerOffset,innerOffset,step);
-		 				sb.append(id_2);
+		 				for (int j=0;j<maxLength;j++) {
+		 					if(itemLength>=j+1) {
+			 					int iteration=j/valuesperblock;
+			 					int blockOffset=j%valuesperblock;
+			 					long id_2=(long)get32(bytes,iteration,outerOffset,innerOffset+blockOffset*4,step);
+				 				String id=Long.toString(id_2);
+				 				arr[i][j]=id;
+		 					}
+		 					else {
+		 						arr[i][j]="";
+		 					}
+		 				}
+		 
 		 				break;
 		 			case "DT_SHORT":
-		 				short id_3=get16(bytes,j,outerOffset,innerOffset,step);
-		 				sb.append(id_3);
+		 				for (int j=0;j<maxLength;j++) {
+		 					if(itemLength>=j+1) {
+			 					int iteration=j/valuesperblock;
+			 					int blockOffset=j%valuesperblock;
+			 					short id_3=get16(bytes,iteration,outerOffset,innerOffset+blockOffset*2,step);
+				 				String id=Short.toString(id_3);
+				 				arr[i][j]=id;
+		 					}
+		 					else {
+		 						arr[i][j]="";
+		 					}
+		 				}
 		 				break;
 		 			case "DT_DOUBLE":
-		 				long id4=get64(bytes,j,outerOffset,innerOffset,step);
-		 				double id_4=Double.longBitsToDouble(id4);
-		 				sb.append(id_4);
+		 				for (int j=0;j<maxLength;j++) {
+		 					if(itemLength>=j+1) {
+			 					int iteration=j/valuesperblock;
+			 					int blockOffset=j%valuesperblock;
+			 					long id4=get64(bytes,iteration,outerOffset,innerOffset+blockOffset*8,step);
+				 				double id_4=Double.longBitsToDouble(id4);
+				 				String id=Double.toString(id_4);
+				 				arr[i][j]=id;
+		 					}
+		 					else {
+		 						arr[i][j]="";
+		 					}
+		 				}
 		 				break;
 	 				default:
 	 					break;
 		 			}
-		 			if(i==len-1) {
+		 }
+		 	
+		 
+		 //into csv
+		 for (int i=0;i<getMaxOfList(nodeList_external_length);i++) {
+			 for(int j=0;j<len;j++) {
+				 sb.append(arr[j][i]);
+				 if(j==len-1) {
 			 			sb.append('\n');
 			 		}
 			 		else sb.append(',');
-		 		}
-		 	}
+				 
+			 }
+		 }
+	
+		
 		
 		
 	        pw.print(sb.toString());
