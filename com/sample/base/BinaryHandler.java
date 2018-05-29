@@ -211,8 +211,22 @@ public class BinaryHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "lab_1.csv";	
-		
+		return "ab_1.csv";
+
+	}
+
+	protected static long get64(byte[] bytes, int i, int outerOffset, int innerOffset, int step) {
+		long value = 0;
+		value += (long) (bytes[i * step + 7 + innerOffset + outerOffset] & 0x000000FF) << 56;
+		value += (long) (bytes[i * step + 6 + innerOffset + outerOffset] & 0x000000FF) << 48;
+		value += (long) (bytes[i * step + 5 + innerOffset + outerOffset] & 0x000000FF) << 40;
+		value += (long) (bytes[i * step + 4 + innerOffset + outerOffset] & 0x000000FF) << 32;
+		value += (bytes[i * step + 3 + innerOffset + outerOffset] & 0x000000FF) << 24;
+		value += (bytes[i * step + 2 + innerOffset + outerOffset] & 0x000000FF) << 16;
+		value += (bytes[i * step + 1 + innerOffset + outerOffset] & 0x000000FF) << 8;
+		value += (bytes[i * step + innerOffset + outerOffset] & 0x000000FF);
+		return value;
+
 	}
 
 	protected static int get32(byte[] bytes, int i, int outerOffset, int innerOffset, int step) {
