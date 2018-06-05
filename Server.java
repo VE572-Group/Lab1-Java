@@ -71,7 +71,7 @@ public class Server {
                     // log(new String(mReqInfo.data, 0, mReqInfo.data_size), mclientNumber);
                 }
             } catch (IOException e) {
-                log(e, mclientNumber);
+                // log(e, mclientNumber);
             }
         }
 
@@ -80,10 +80,13 @@ public class Server {
             try {
                 PrintWriter output = new PrintWriter(mSocket.getOutputStream(), true);
                 output.println("OK");
+                output.flush();
                 if (mReqInfo.message_type == MessageType.QUERY_DATA_REQUEST) {
                     output.println("RESULT " + mRspInfo.name + " OF " + mRspInfo.quantity + " " + mRspInfo.value + " "
                             + mRspInfo.unit + " FROM " + mRspInfo.count + " POINTS.");
+                    output.flush();
                 }
+                output.flush();
             } catch (Exception e) {
                 // log(e, mclientNumber);
             }
@@ -115,7 +118,7 @@ public class Server {
                     if (mDataIncome) {
                         try {
                             DataOutputStream outFile = new DataOutputStream(
-                                    new FileOutputStream("client" + mclientNumber + "." + mReqInfo.data_type));
+                                    new FileOutputStream("client" + "." + mReqInfo.data_type));
                             outFile.write(mReqInfo.data, 0, mReqInfo.data_size);
                             outFile.close();
                         } catch (IOException e) {
@@ -130,10 +133,8 @@ public class Server {
             if (mReqInfo.message_type == MessageType.QUERY_DATA_REQUEST) {
                 try {
                     if (mFirstQuery) {
-                        mCSVFile = BinaryHandler.parseFile("client" + mclientNumber + ".XML",
-                                "client" + mclientNumber + ".BIN");
+                        mCSVFile = BinaryHandler.parseFile("client.BIN", "client.XML");
                         mFirstQuery = false;
-
                     }
                     mData = CSVReader.read(mCSVFile);
                     QueryData();
