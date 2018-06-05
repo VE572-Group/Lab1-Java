@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class Client {
     public static void main(String[] args) {
         try {
-            Socket socket = new Socket("localhost", 5000);
+            Socket socket = new Socket("35.187.205.210", 5000);
             while (true) {
                 Begin(socket);
                 TimeUnit.SECONDS.sleep(1);

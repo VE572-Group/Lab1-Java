@@ -85,7 +85,7 @@ public class Server {
                             + mRspInfo.unit + " FROM " + mRspInfo.count + " POINTS.");
                 }
             } catch (Exception e) {
-                log(e, mclientNumber);
+                // log(e, mclientNumber);
             }
             // HandleResponse();
         }
@@ -99,7 +99,7 @@ public class Server {
                 }
                 mSocket.close();
             } catch (Exception e) {
-                log(e, mclientNumber);
+                // log(e, mclientNumber);
             }
 
         }
@@ -119,7 +119,7 @@ public class Server {
                             outFile.write(mReqInfo.data, 0, mReqInfo.data_size);
                             outFile.close();
                         } catch (IOException e) {
-                            log(e, mclientNumber);
+                            // log(e, mclientNumber);
                         } finally {
                             mDataIncome = false;
                         }
@@ -139,7 +139,7 @@ public class Server {
                     QueryData();
                     log("Queryed Data", mclientNumber);
                 } catch (Exception e) {
-                    log(e, mclientNumber);
+                    // log(e, mclientNumber);
                 }
 
             }
@@ -231,7 +231,7 @@ public class Server {
                     mReqInfo.message_type = MessageType.UNKNOWN;
                 }
             } catch (PatternSyntaxException e) {
-                log(e, mclientNumber);
+                // log(e, mclientNumber);
             }
 
         }
