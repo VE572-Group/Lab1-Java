@@ -11,15 +11,15 @@ public class Client {
             Socket socket = new Socket("localhost", 5000);
             while (true) {
                 Begin(socket);
-                TimeUnit.SECONDS.sleep(1);
+                // TimeUnit.SECONDS.sleep(1);
                 Size(socket);
-                TimeUnit.SECONDS.sleep(1);
+                // TimeUnit.SECONDS.sleep(1);
                 SizeBIN(socket);
-                TimeUnit.SECONDS.sleep(1);
+                // TimeUnit.SECONDS.sleep(1);
                 Query(socket);
-                TimeUnit.SECONDS.sleep(1);
+                // TimeUnit.SECONDS.sleep(1);
                 Query2(socket);
-                TimeUnit.SECONDS.sleep(1);
+                // TimeUnit.SECONDS.sleep(1);
                 End(socket);
                 break;
             }
@@ -34,6 +34,7 @@ public class Client {
         try {
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
             output.println("QUERY MAX CHANNEL05;");
+            output.flush();
             WaitResponse(socket);
             // TimeUnit.SECONDS.sleep(5);
             WaitResponse(socket);
@@ -46,6 +47,7 @@ public class Client {
         try {
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
             output.println("QUERY MAX CHANNEL03;");
+            output.flush();
             WaitResponse(socket);
             // TimeUnit.SECONDS.sleep(5);
             WaitResponse(socket);
@@ -58,6 +60,7 @@ public class Client {
         try {
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
             output.println("SIZE XML 17055;");
+            output.flush();
             WaitResponse(socket);
             DataInputStream inFile = new DataInputStream(new FileInputStream("decoding.xml"));
             DataOutputStream outFile = new DataOutputStream(socket.getOutputStream());
@@ -73,6 +76,7 @@ public class Client {
         try {
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
             output.println("SIZE BIN 252084;");
+            output.flush();
             WaitResponse(socket);
             DataInputStream inFile = new DataInputStream(new FileInputStream("data_1.bin"));
             DataOutputStream outFile = new DataOutputStream(socket.getOutputStream());
@@ -86,6 +90,7 @@ public class Client {
 
     private static void WaitResponse(Socket socket) {
         try {
+            TimeUnit.SECONDS.sleep(1);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String line;
             while ((line = in.readLine()) == null) {
@@ -101,6 +106,7 @@ public class Client {
         try {
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
             output.println("BEGIN;");
+            output.flush();
             WaitResponse(socket);
         } catch (Exception e) {
             e.printStackTrace();
@@ -111,6 +117,7 @@ public class Client {
         try {
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
             output.println("END;");
+            output.flush();
             WaitResponse(socket);
         } catch (Exception e) {
             e.printStackTrace();

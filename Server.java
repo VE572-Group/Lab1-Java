@@ -37,7 +37,7 @@ public class Server {
         private Socket mSocket;
         private int mclientNumber = -1;
         private int mAllowed = -1; // init to -1, begin is 0; end is 1;
-        private boolean mDataIncome = false;
+        private int mDataIncome = 0;
         private boolean mFirstQuery = true;
         private String mCSVFile;
         private RequestInfo mReqInfo;
@@ -56,15 +56,15 @@ public class Server {
 
         private void ReadRequest() {
             try {
-                if (!mDataIncome) {
+                if (mDataIncome % 2 == 0) {
                     BufferedReader in = new BufferedReader(new InputStreamReader(mSocket.getInputStream()), 4096);
                     String line = in.readLine();
-                    log(line, mclientNumber);
+                    // log(line, mclientNumber);
                     if (line != null) {
                         ParseMessage(line);
                     }
                 } else {
-                    // log("Begin recieve data", mclientNumber);
+                    log("Begin recieve data", mclientNumber);
                     BufferedInputStream in = new BufferedInputStream(mSocket.getInputStream());
                     mReqInfo.data = new byte[mReqInfo.data_size + 1];
                     in.read(mReqInfo.data, 0, mReqInfo.data_size);
@@ -79,7 +79,13 @@ public class Server {
 
             try {
                 PrintWriter output = new PrintWriter(mSocket.getOutputStream(), true);
-                output.println("OK");
+                if (mReqInfo.message_type == MessageType.SEND_DATA_REQUEST) {
+                    mDataIncome++;
+                }
+                if (mDataIncome % 2 == 1 || mReqInfo.message_type != MessageType.SEND_DATA_REQUEST) {
+                    output.println("OK");
+                }
+
                 output.flush();
                 if (mReqInfo.message_type == MessageType.QUERY_DATA_REQUEST) {
                     output.println("RESULT " + mRspInfo.name + " OF " + mRspInfo.quantity + " " + mRspInfo.value + " "
@@ -113,23 +119,19 @@ public class Server {
              * 0; } if (mReqInfo.message_type == MessageType.CLIENT_END_REQUEST) { mAllowed
              * = 1; }
              */
-            if (mReqInfo.message_type == MessageType.SEND_DATA_REQUEST)
-                if (mReqInfo.message_type == MessageType.SEND_DATA_REQUEST) {
-                    if (mDataIncome) {
-                        try {
-                            DataOutputStream outFile = new DataOutputStream(
-                                    new FileOutputStream("client" + "." + mReqInfo.data_type));
-                            outFile.write(mReqInfo.data, 0, mReqInfo.data_size);
-                            outFile.close();
-                        } catch (IOException e) {
-                            // log(e, mclientNumber);
-                        } finally {
-                            mDataIncome = false;
-                        }
-                    } else {
-                        mDataIncome = true;
+            // if (mReqInfo.message_type == MessageType.SEND_DATA_REQUEST)
+            if (mReqInfo.message_type == MessageType.SEND_DATA_REQUEST) {
+                if (mDataIncome % 2 == 1) {
+                    try {
+                        DataOutputStream outFile = new DataOutputStream(
+                                new FileOutputStream("client" + "." + mReqInfo.data_type));
+                        outFile.write(mReqInfo.data, 0, mReqInfo.data_size);
+                        outFile.close();
+                    } catch (IOException e) {
+                        // log(e, mclientNumber);
                     }
                 }
+            }
             if (mReqInfo.message_type == MessageType.QUERY_DATA_REQUEST) {
                 try {
                     if (mFirstQuery) {
